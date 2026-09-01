@@ -1,91 +1,202 @@
+<!doctype html>
 <html lang="es">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Coki - Cliente</title>
+
+    <meta name="description"
+        content="Coki Librería: encontrá útiles escolares, productos de librería y artículos para tus necesidades escolares.">
+
+    <title>Librería Coki - Útiles escolares</title>
+
     <link rel="icon" href="coki-logo.ico">
-  </head>
-  <body data-page="libreria">
+</head>
+
+<body data-page="libreria">
+
     <main>
-      <header>
-        <button type="button" aria-label="Menu" aria-expanded="false">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </button>
-        <section>
-          <button type="button" onclick="window.location.href='menuprincipal.html'" aria-label="Volver al menu">
-            <img src="img/coki-logo.png" alt="Coki">
-          </button>
-          <nav aria-label="Secciones principales">
-            <a href="libreria.html">Libreria</a>
-            <a href="impresiones.html">Impresiones</a>
-            <a href="consultarpedido.html">Consultar pedido</a>
-          </nav>
-        </section>
-        <button id="openCartButton" type="button" aria-label="Ver carrito">
-          <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M6 7h14l-1.4 8.2H7.2L6 7Zm0 0 1.4-3h3.2M9 20h.01M17 20h.01" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-          </svg>
-          <span id="cartCountBadge">0</span>
-        </button>
-        <nav id="menuPanel" hidden>
-          <section>
-            <strong>Cuenta cliente</strong>
-            <span id="clientSessionLabel">Ingresa para completar tu pedido</span>
-          </section>
-          <button type="button" data-menu-action="login" id="clientSessionButton">Iniciar sesion</button>
-        </nav>
-      </header>
 
-      <section id="clientLoginModal" hidden>
-        <form id="clientLoginForm">
-          <section>
-            <img src="img/coki-logo.png" alt="Coki">
-            <p>Inicio de sesion cliente</p>
-          </section>
-          <section>
-            <label for="clientLoginName">Nombre y apellido</label>
-            <input id="clientLoginName" required autocomplete="name">
-          </section>
-          <section>
-            <label for="clientLoginPhone">Telefono</label>
-            <input id="clientLoginPhone" required autocomplete="tel">
-          </section>
-          <button type="submit">Iniciar sesion</button>
-          <button type="button" id="createClientAccount">Crear cuenta</button>
-          <button type="button" id="closeClientLogin">Cerrar</button>
-        </form>
-      </section>
-      
-      <article>
-        <section id="flowHeader">
-          <button type="button" onclick="window.location.href='menuprincipal.html'">Volver al menu</button>
-          <section>
-            <h1>Agregar productos al carrito</h1>
-            <p>Elegí productos, cantidad y color. Despues podes ir al carrito para finalizar el pedido.</p>
-          </section>
-        </section>
+        <header>
 
-        <section id="orderScreen">
-          <section id="schoolFlow">
-            <h2>
-              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                <path d="m12 3 8 4.5v9L12 21l-8-4.5v-9L12 3Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
-                <path d="M12 12 4.5 7.8M12 12l7.5-4.2M12 12v8.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-              </svg>
-              Libreria
-            </h2>
+            <button type="button" aria-label="Abrir menú" aria-expanded="false">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path d="M4 7h16M4 12h16M4 17h16"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round" />
+                </svg>
+            </button>
+
             <section>
-              <section>
-                <label for="productSearch">Buscar producto</label>
-                <input id="productSearch" placeholder="Ej: lapiz, carpeta, goma">
-              </section>
-              <section id="productList"></section>
+
+                <button type="button"
+                    onclick="window.location.href='menuprincipal.html'"
+                    aria-label="Volver al menú principal">
+
+                    <img src="img/coki-logo.png"
+                        alt="Logo de Coki Librería">
+
+                </button>
+
+                <nav aria-label="Secciones principales">
+                    <a href="libreria.html">Librería</a>
+                    <a href="impresiones.html">Impresiones</a>
+                    <a href="consultarpedido.html">Consultar pedido</a>
+                </nav>
+
             </section>
-          </section>
+
+            <button id="openCartButton"
+                type="button"
+                aria-label="Ver carrito">
+
+                <svg viewBox="0 0 24 24"
+                    fill="none"
+                    aria-hidden="true">
+
+                    <path d="M6 7h14l-1.4 8.2H7.2L6 7Zm0 0 1.4-3h3.2M9 20h.01M17 20h.01"
+                        stroke="currentColor"
+                        stroke-width="1.8"
+                        stroke-linecap="round"
+                        stroke-linejoin="round" />
+
+                </svg>
+
+                <span id="cartCountBadge">0</span>
+
+            </button>
+
+            <nav id="menuPanel" hidden>
+
+                <section>
+                    <strong>Cuenta cliente</strong>
+                    <span id="clientSessionLabel">
+                        Ingresa para completar tu pedido
+                    </span>
+                </section>
+
+                <button type="button"
+                    data-menu-action="login"
+                    id="clientSessionButton">
+                    Iniciar sesión
+                </button>
+
+            </nav>
+
+        </header>
+
+
+        <section id="clientLoginModal" hidden>
+
+            <form id="clientLoginForm">
+
+                <section>
+
+                    <img src="img/coki-logo.png"
+                        alt="Logo de Coki Librería">
+
+                    <h2>Inicio de sesión cliente</h2>
+
+                </section>
+
+                <section>
+
+                    <label for="clientLoginName">
+                        Nombre y apellido
+                    </label>
+
+                    <input id="clientLoginName"
+                        required
+                        autocomplete="name">
+
+                </section>
+
+                <section>
+
+                    <label for="clientLoginPhone">
+                        Teléfono
+                    </label>
+
+                    <input id="clientLoginPhone"
+                        required
+                        autocomplete="tel">
+
+                </section>
+
+                <button type="submit">
+                    Iniciar sesión
+                </button>
+
+                <button type="button"
+                    id="createClientAccount">
+                    Crear cuenta
+                </button>
+
+                <button type="button"
+                    id="closeClientLogin">
+                    Cerrar
+                </button>
+
+            </form>
+
         </section>
-      </article>
+
+
+        <article>
+
+            <section id="flowHeader">
+
+                <button type="button"
+                    onclick="window.location.href='menuprincipal.html'">
+                    Volver al menú
+                </button>
+
+                <section>
+
+                    <h1>Productos de librería</h1>
+
+                    <p>
+                        Elegí productos, cantidad y color.
+                        Después podés ir al carrito para finalizar el pedido.
+                    </p>
+
+                </section>
+
+            </section>
+
+
+            <section id="orderScreen">
+
+                <section id="schoolFlow">
+
+                    <h2>Librería</h2>
+
+                    <section>
+
+                        <section>
+
+                            <label for="productSearch">
+                                Buscar producto
+                            </label>
+
+                            <input id="productSearch"
+                                placeholder="Ej: lápiz, carpeta, goma">
+
+                        </section>
+
+                        <section id="productList"></section>
+
+                    </section>
+
+                </section>
+
+            </section>
+
+        </article>
+
     </main>
-  </body>
+
+</body>
+
 </html>
