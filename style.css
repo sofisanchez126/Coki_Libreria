@@ -1,0 +1,982 @@
+@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap');
+
+/* ============================================================
+   COKI LIBRERÍA — style.css   (hoja de estilos única del sitio)
+
+   Índice
+   1.  Variables (:root)
+   2.  Reset y Box Model
+   3.  Tipografía base
+   4.  Layout / contenedores
+   5.  Botones (estilo "neobrutalista")
+   6.  Formularios
+   7.  Barra superior + navbar (Flexbox / Grid)
+   8.  Menú desplegable animado (<details>)
+   9.  Carrito y badge
+   10. Modal de inicio de sesión
+   11. Inicio (MenuPrincipal) — Grid de cards
+   12. Librería — búsqueda + grid de productos
+   13. Impresiones — formulario
+   14. Consultar pedido
+   15. Páginas de sesión (usuario / admin)
+   16. Footer
+   17. Media Queries (Responsive)
+   ============================================================ */
+
+
+/* ============================================================
+   1. VARIABLES  (:root + var())
+   ============================================================ */
+:root {
+    /* Paleta de marca (formularios "neobrutalistas" sobre fondo violeta) */
+    --color-tinta: #2f2a56;           /* texto y bordes (violeta muy oscuro) */
+    --color-primario: #de5499;        /* acción principal (rosa) */
+    --color-primario-oscuro: #c23d82;
+    --color-acento: #e99f4c;          /* sombras "duras" y detalles (naranja) */
+    --color-secundario: #4c9f9b;      /* foco / enlaces (verde agua) */
+
+    /* Fondos y superficies */
+    --color-fondo: #4c478f;           /* fondo de página (violeta) */
+    --color-fondo-oscuro: #3a3670;    /* footer y zonas oscuras */
+    --color-superficie: #f3e9e7;      /* tarjetas y formularios (crema) */
+    --color-superficie-alt: #fbf5f3;
+    --color-sobre-fondo: #eeebff;     /* texto claro directamente sobre el violeta */
+    --color-texto: #2f2a56;
+    --color-texto-suave: #5b5570;
+    --color-borde: #2f2a56;
+
+    /* Estados */
+    --color-exito: #2e7d32;
+    --color-error: #c0392b;
+
+    /* Tipografías */
+    --fuente-titulos: 'Fredoka', system-ui, -apple-system, 'Segoe UI', sans-serif;
+    --fuente-texto: 'Nunito', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+    /* Espaciado (rem) */
+    --esp-xs: 0.25rem;
+    --esp-sm: 0.5rem;
+    --esp-md: 1rem;
+    --esp-lg: 1.5rem;
+    --esp-xl: 2.5rem;
+
+    /* Bordes, radios y sombras */
+    --radio-sm: 4px;
+    --radio-md: 10px;
+    --radio-lg: 20px;
+    --borde: 2px solid var(--color-borde);
+    --sombra-dura: 3px 4px 0 1px var(--color-acento);
+    --sombra-dura-sm: 2px 3px 0 0 var(--color-acento);
+    --sombra-suave: 0 8px 24px rgba(47, 42, 86, 0.14);
+
+    /* Layout */
+    --ancho-contenido: 1080px;
+}
+
+
+/* ============================================================
+   2. RESET Y BOX MODEL
+   ============================================================ */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+    /* El fondo también en <html> para que cubra el 100% aunque haya
+       barra de scroll o algún desborde de sub-píxeles */
+    background-color: var(--color-fondo);
+    background-image: url("https://www.transparenttextures.com/patterns/crisp-paper-ruffles.png");
+    /* Patrón sólo para prototipo; para producción conviene descargarlo y alojarlo en /img. */
+}
+
+body {
+    font-family: var(--fuente-texto);
+    color: var(--color-texto);
+    background-color: var(--color-fondo);
+    background-image: url("https://www.transparenttextures.com/patterns/crisp-paper-ruffles.png");
+    line-height: 1.6;
+    width: 100%;
+    min-height: 100vh;
+    overflow-x: clip;
+    display: flex;
+    flex-direction: column;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    color: var(--color-primario-oscuro);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+[hidden] {
+    display: none !important;
+}
+
+:focus-visible {
+    outline: 3px solid var(--color-secundario);
+    outline-offset: 2px;
+}
+
+
+/* ============================================================
+   3. TIPOGRAFÍA BASE
+   ============================================================ */
+h1,
+h2,
+h3,
+h4 {
+    font-family: var(--fuente-titulos);
+    line-height: 1.2;
+    color: var(--color-tinta);
+}
+
+h1 {
+    font-size: clamp(1.7rem, 1rem + 3vw, 2.6rem);
+}
+
+h2 {
+    font-size: clamp(1.35rem, 1rem + 1.6vw, 1.9rem);
+}
+
+h3 {
+    font-size: 1.15rem;
+}
+
+p {
+    color: var(--color-texto-suave);
+}
+
+
+/* ============================================================
+   4. LAYOUT / CONTENEDORES
+   ============================================================ */
+main {
+    flex: 1;
+    width: 100%;
+}
+
+main > section,
+main > article,
+main > h1 {
+    width: 100%;
+    max-width: var(--ancho-contenido);
+    margin-inline: auto;
+    padding: var(--esp-lg) var(--esp-md);
+}
+
+/* Títulos y texto que van directamente sobre el fondo violeta */
+[data-page="inicio"] main > h1,
+[data-page="inicio"] main > section > h2,
+[data-page="impresiones"] main > header h1,
+[data-page="impresiones"] main > header p,
+[data-page="impresiones"] main > section > h2,
+[data-page^="sesion"] main > section > h2,
+#flowHeader h1,
+#flowHeader p {
+    color: var(--color-sobre-fondo);
+}
+
+
+/* ============================================================
+   5. BOTONES  (estilo "neobrutalista")
+   ============================================================ */
+button,
+.boton {
+    font-family: var(--fuente-texto);
+    font-size: 1rem;
+    font-weight: 800;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--esp-sm);
+    padding: 0.8rem 1.4rem;
+    color: var(--color-tinta);
+    background-color: var(--color-superficie-alt);
+    border: var(--borde);
+    border-radius: var(--radio-md);
+    box-shadow: var(--sombra-dura-sm);
+    transition: transform 0.12s ease, box-shadow 0.12s ease, background-color 0.12s ease;
+}
+
+button:hover,
+.boton:hover {
+    background-color: #fff;
+    text-decoration: none;
+}
+
+button:active,
+.boton:active {
+    transform: translateY(3px);
+    box-shadow: 1px 1px 0 0 var(--color-acento);
+}
+
+/* Botón principal (acciones destacadas: enviar, confirmar, ir a...) */
+button[type="submit"],
+.boton--primario {
+    background-color: var(--color-primario);
+    color: #fff;
+}
+
+button[type="submit"]:hover,
+.boton--primario:hover {
+    background-color: var(--color-primario-oscuro);
+}
+
+/* Botón secundario / de contorno */
+.boton--secundario {
+    background-color: transparent;
+    color: var(--color-secundario);
+    border-color: var(--color-secundario);
+    box-shadow: 2px 3px 0 0 var(--color-secundario);
+}
+
+
+/* ============================================================
+   6. FORMULARIOS
+   ============================================================ */
+label {
+    display: block;
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--color-texto-suave);
+    margin-bottom: var(--esp-xs);
+    text-align: left;
+}
+
+input,
+select,
+textarea {
+    font-family: var(--fuente-texto);
+    font-size: 1rem;
+    width: 100%;
+    padding: 0.75rem 0.65rem;
+    color: var(--color-texto);
+    background-color: #fff;
+    border: var(--borde);
+    border-radius: var(--radio-sm);
+    box-shadow: var(--sombra-dura-sm);
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+    outline: none;
+    transform: translateY(3px);
+    box-shadow: 1px 1px 0 0 var(--color-acento);
+}
+
+textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+/* Formularios "tarjeta": centrados, fondo crema, borde y sombra dura */
+main form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-md);
+    width: min(100%, 420px);
+    margin-inline: auto;
+    padding: var(--esp-xl) var(--esp-lg);
+    text-align: center;
+    background-color: var(--color-superficie);
+    border: var(--borde);
+    border-radius: var(--radio-lg);
+    box-shadow: var(--sombra-dura);
+}
+
+main form h2 {
+    font-weight: 700;
+}
+
+main form fieldset {
+    border: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-md);
+}
+
+main form legend {
+    font-family: var(--fuente-titulos);
+    font-weight: 600;
+    margin-bottom: var(--esp-sm);
+}
+
+main form .campo {
+    text-align: left;
+}
+
+main form a {
+    font-weight: 800;
+    color: var(--color-tinta);
+}
+
+/* Formularios que ya viven dentro de una tarjeta -> se muestran "planos" */
+#orderScreen form {
+    width: 100%;
+    padding: 0;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    text-align: left;
+}
+
+
+/* ============================================================
+   7. BARRA SUPERIOR + NAVBAR  (FLEXBOX / GRID)
+   ============================================================ */
+header {
+    background-color: var(--color-superficie-alt);
+    border-bottom: var(--borde);
+    padding: var(--esp-md);
+}
+
+header img {
+    max-height: 56px;
+    width: auto;
+}
+
+/* Barra de navegación tipo "píldora" */
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--esp-xs);
+}
+
+nav[aria-label="Secciones principales"] {
+    background-color: rgba(47, 42, 86, 0.06);
+    border: 2px solid rgba(47, 42, 86, 0.15);
+    border-radius: 999px;
+    padding: var(--esp-xs);
+}
+
+nav ul {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--esp-xs);
+}
+
+nav a {
+    position: relative;
+    font-weight: 700;
+    color: var(--color-tinta);
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    transition: background-color 0.15s ease;
+}
+
+nav a::after {
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 0.15rem;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-primario);
+    transform: translateX(-50%);
+    transition: width 0.25s ease;
+}
+
+nav a:hover {
+    background-color: rgba(255, 255, 255, 0.65);
+    text-decoration: none;
+}
+
+nav a:hover::after {
+    width: 55%;
+}
+
+/* ---- Barra superior (.barra): inicio, librería y consultar pedido ----
+   Celular: apilada y centrada.  Desde 600px pasa a grid de 3 columnas
+   ("Menú" a la izquierda, logo al centro, navbar a la derecha). */
+.barra {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--esp-sm);
+}
+
+.barra > a {
+    display: inline-flex;
+}
+
+.barra .header__logo {
+    max-height: 52px;
+}
+
+.barra .menu {
+    margin-bottom: 0;
+}
+
+/* En las páginas de flujo la barra queda fija arriba */
+[data-page="libreria"] .barra,
+[data-page="consultarpedido"] .barra {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+}
+
+/* Carrito, agregado como un ítem más de la píldora de navegación */
+.nav__cart {
+    position: relative;
+    flex-shrink: 0;
+    padding: 0.35rem 0.55rem;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 999px;
+}
+
+.nav__cart:hover {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.nav__cart svg {
+    width: 22px;
+    height: 22px;
+    color: var(--color-tinta);
+}
+
+
+/* ============================================================
+   8. MENÚ DESPLEGABLE ANIMADO  (<details class="menu">)
+   ============================================================ */
+.menu {
+    position: relative;
+    width: 12rem;
+    max-width: 100%;
+    margin-bottom: var(--esp-sm);
+}
+
+.menu__toggle {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 2.5rem;
+    padding: 3px 15px;
+    font-family: var(--fuente-titulos);
+    font-weight: 700;
+    color: #fff;
+    background-color: var(--color-primario);
+    border: var(--borde);
+    border-radius: var(--radio-md);
+    box-shadow: var(--sombra-dura-sm);
+}
+
+.menu__toggle::-webkit-details-marker {
+    display: none;
+}
+
+/* Flecha construida con dos pseudo-elementos */
+.menu__arrow {
+    height: 0.7rem;
+    width: 0.7rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    transition: transform 0.3s ease;
+}
+
+.menu__arrow::before,
+.menu__arrow::after {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 2.5px;
+    background-color: #fff;
+    border-radius: 500px;
+    transform-origin: bottom;
+}
+
+.menu__arrow::after {
+    transform: rotate(35deg) translateX(-0.5px);
+}
+
+.menu__arrow::before {
+    transform: rotate(-35deg) translateX(0.5px);
+}
+
+.menu[open] .menu__arrow {
+    transform: rotateX(180deg);
+}
+
+/* Panel desplegable */
+.menu__panel {
+    position: absolute;
+    left: 0;
+    top: calc(100% + 6px);
+    width: 100%;
+    z-index: 30;
+    display: block;
+    padding: 6px;
+    background-color: #fff;
+    color: var(--color-tinta);
+    border: var(--borde);
+    border-radius: var(--radio-md);
+    box-shadow: var(--sombra-dura);
+    overflow: hidden;
+}
+
+.menu__panel ul {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0;
+}
+
+.menu__panel a {
+    display: block;
+    padding: 8px 10px;
+    border-radius: 6px;
+    color: inherit;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(47, 42, 86, 0.18);
+}
+
+.menu__panel li:last-child a {
+    border-bottom: none;
+}
+
+.menu__panel a:hover {
+    background-color: var(--color-superficie);
+    text-decoration: none;
+}
+
+.menu__panel a::after {
+    display: none;
+}
+
+/* Entrada escalonada de los ítems al abrir */
+.menu[open] .menu__panel li {
+    animation: menuItem 0.4s both;
+}
+
+.menu[open] .menu__panel li:nth-child(2) { animation-delay: 0.06s; }
+.menu[open] .menu__panel li:nth-child(3) { animation-delay: 0.12s; }
+.menu[open] .menu__panel li:nth-child(4) { animation-delay: 0.18s; }
+
+@keyframes menuItem {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+
+/* ============================================================
+   9. CARRITO Y BADGE
+   ============================================================ */
+#cartCountBadge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    min-width: 1.25rem;
+    height: 1.25rem;
+    padding: 0 0.25rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.72rem;
+    font-weight: 800;
+    line-height: 1;
+    color: #fff;
+    background-color: var(--color-primario);
+    border: 2px solid var(--color-superficie-alt);
+    border-radius: 999px;
+}
+
+
+/* ============================================================
+   10. MODAL DE INICIO DE SESIÓN  (#clientLoginModal)
+   ============================================================ */
+#clientLoginModal {
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    display: grid;
+    place-items: center;
+    padding: var(--esp-md);
+    background-color: rgba(47, 42, 86, 0.55);
+}
+
+#clientLoginForm {
+    width: min(92vw, 400px);
+    margin: 0;
+}
+
+#clientLoginForm > section:first-child {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--esp-sm);
+}
+
+#clientLoginForm img {
+    max-height: 60px;
+}
+
+
+/* ============================================================
+   11. INICIO (MenuPrincipal) — GRID DE CARDS
+   ============================================================ */
+[data-page="inicio"] main > h1 {
+    text-align: center;
+    padding-top: 6vh;
+    padding-bottom: 2vh;
+}
+
+/* --- CSS GRID: tarjetas de categorías --- */
+[data-page="inicio"] main > section {
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: var(--esp-lg);
+}
+
+[data-page="inicio"] main > section > h2 {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: var(--esp-sm);
+}
+
+[data-page="inicio"] .card {
+    width: 100%;
+    max-width: 360px;
+}
+
+/* Card (adaptación del diseño de Uiverse a la paleta del sitio) */
+.card {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--color-superficie);
+    border: var(--borde);
+    border-radius: var(--radio-md);
+    box-shadow: var(--sombra-dura);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.04);
+    box-shadow: 6px 8px 0 1px var(--color-acento);
+}
+
+.card__media {
+    aspect-ratio: 16 / 10;
+    background-image: linear-gradient(135deg, #f9d9e5, #ead4f0);
+    border-bottom: var(--borde);
+}
+
+.card__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: var(--esp-sm);
+}
+
+.card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-sm);
+    padding: var(--esp-md);
+}
+
+.card__body h3 {
+    font-weight: 700;
+}
+
+.card__btn {
+    margin-top: var(--esp-xs);
+    align-self: flex-start;
+}
+
+
+/* ============================================================
+   12. LIBRERÍA — BÚSQUEDA + GRID DE PRODUCTOS
+   ============================================================ */
+#flowHeader {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: var(--esp-md);
+    margin-bottom: var(--esp-lg);
+}
+
+#flowHeader > section {
+    flex: 1;
+    min-width: 240px;
+}
+
+#orderScreen {
+    background-color: var(--color-superficie);
+    border: var(--borde);
+    border-radius: var(--radio-md);
+    box-shadow: var(--sombra-dura);
+    padding: var(--esp-lg);
+}
+
+#schoolFlow h2,
+#consultFlow h2 {
+    margin-bottom: var(--esp-md);
+}
+
+#productSearch,
+#searchForm {
+    margin-bottom: var(--esp-lg);
+}
+
+/* --- CSS GRID: listado de productos (generado por JS) --- */
+#productList {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: var(--esp-md);
+}
+
+#productList > * {
+    padding: var(--esp-md);
+    border: var(--borde);
+    border-radius: var(--radio-md);
+    background-color: var(--color-superficie-alt);
+}
+
+
+/* ============================================================
+   13. IMPRESIONES — FORMULARIO
+   ============================================================ */
+[data-page="impresiones"] main > header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--esp-sm);
+    text-align: center;
+    background-color: transparent;
+    border-bottom: none;
+    padding-top: var(--esp-xl);
+}
+
+[data-page="impresiones"] main > header img {
+    max-height: 72px;
+}
+
+[data-page="impresiones"] form {
+    width: min(100%, 560px);
+    text-align: left;
+}
+
+[data-page="impresiones"] form label {
+    margin-top: var(--esp-sm);
+}
+
+[data-page="impresiones"] form button {
+    margin-top: var(--esp-md);
+    align-self: flex-start;
+}
+
+
+/* ============================================================
+   14. CONSULTAR PEDIDO
+   ============================================================ */
+#searchResults {
+    display: grid;
+    gap: var(--esp-md);
+    margin-top: var(--esp-md);
+}
+
+#searchResults > * {
+    padding: var(--esp-md);
+    border: var(--borde);
+    border-left: 6px solid var(--color-secundario);
+    border-radius: var(--radio-sm);
+    background-color: var(--color-superficie-alt);
+}
+
+
+/* ============================================================
+   15. PÁGINAS DE SESIÓN (usuario / admin)
+   ============================================================ */
+[data-page^="sesion"] header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--esp-xs);
+    text-align: center;
+    padding: var(--esp-lg) var(--esp-md);
+    background: linear-gradient(160deg, var(--color-superficie), var(--color-superficie-alt));
+}
+
+[data-page^="sesion"] header img {
+    max-height: 56px;
+}
+
+[data-page^="sesion"] main {
+    display: flex;
+    align-items: safe center;
+    justify-content: center;
+    padding-block: var(--esp-lg);
+}
+
+[data-page^="sesion"] main > section {
+    width: min(92vw, 440px);
+    margin-block: 0;
+    padding: 0;
+}
+
+[data-page^="sesion"] main > section > h2 {
+    text-align: center;
+    margin-bottom: var(--esp-sm);
+}
+
+[data-page^="sesion"] main form {
+    padding: var(--esp-lg);
+}
+
+[data-page^="sesion"] form button[type="submit"] {
+    width: 100%;
+    margin-top: var(--esp-sm);
+}
+
+[data-page^="sesion"] main > section > p {
+    text-align: center;
+    margin-top: var(--esp-sm);
+    color: var(--color-sobre-fondo);
+}
+
+[data-page^="sesion"] main > section > p a {
+    color: #fff;
+    font-weight: 800;
+    text-decoration: underline;
+}
+
+
+/* ============================================================
+   16. FOOTER
+   ============================================================ */
+body > footer {
+    position: relative;
+    z-index: 1;
+    margin-top: var(--esp-xl);
+    padding: var(--esp-lg) var(--esp-md);
+    text-align: center;
+    background-color: var(--color-fondo-oscuro);
+    color: var(--color-superficie);
+    border-top: 3px solid var(--color-acento);
+}
+
+body > footer p {
+    color: inherit;
+    font-family: var(--fuente-titulos);
+    letter-spacing: 0.02em;
+}
+
+
+/* ============================================================
+   17. MEDIA QUERIES  (Responsive — mobile first)
+   ============================================================ */
+
+/* ---------- Tablet: 600px o más ---------- */
+@media (min-width: 600px) {
+
+    main > section,
+    main > article,
+    main > h1 {
+        padding-inline: var(--esp-lg);
+    }
+
+    /* Cards del inicio: 2 por fila */
+    [data-page="inicio"] main > section {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    /* Formulario de impresiones en 2 columnas */
+    [data-page="impresiones"] form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--esp-md);
+    }
+
+    [data-page="impresiones"] form label,
+    [data-page="impresiones"] form textarea,
+    [data-page="impresiones"] form input[type="file"],
+    [data-page="impresiones"] form button {
+        grid-column: 1 / -1;
+    }
+}
+
+/* ---------- Escritorio chico: 850px o más ---------- */
+@media (min-width: 850px) {
+
+    /* Cards del inicio: las 3 en una sola fila */
+    [data-page="inicio"] main > section {
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--esp-lg);
+    }
+
+    /* Barra superior en 3 columnas: "Menú" | logo | navbar */
+    .barra {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: var(--esp-md);
+    }
+
+    .barra .menu {
+        justify-self: start;
+        margin-bottom: 0;
+    }
+
+    .barra > nav[aria-label="Secciones principales"] {
+        justify-self: end;
+    }
+}
+
+/* ---------- Escritorio: 992px o más ---------- */
+@media (min-width: 992px) {
+
+    body {
+        font-size: 1.05rem;
+    }
+
+    [data-page="inicio"] main > section {
+        gap: var(--esp-xl);
+    }
+
+    #flowHeader {
+        flex-wrap: nowrap;
+    }
+
+    #productList {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    }
+}
+
+/* ---------- Respeta "reducir movimiento" ---------- */
+@media (prefers-reduced-motion: reduce) {
+
+    * {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
