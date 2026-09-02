@@ -4,62 +4,81 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coki Librería</title>
+    <meta name="description" content="Coki Librería: útiles escolares, impresiones y consultas de pedidos.">
+    <title>Coki Librería - Inicio</title>
+
+    <link rel="icon" href="img/coki-logo.png">
+    <link rel="stylesheet" href="style.css">
 </head>
 
-<body>
+<body data-page="inicio">
 
-    <header>
+    <header class="barra">
 
-        <details>
-            <summary>Menú</summary>
+        <details class="menu">
+            <summary class="menu__toggle">
+                <span>Menú</span>
+                <span class="menu__arrow" aria-hidden="true"></span>
+            </summary>
 
-            <nav>
+            <nav class="menu__panel" aria-label="Menú de gestión">
                 <ul>
-                    <li><a href="#">Panel Admin</a></li>
-                    <li><a href="#">Vista Cliente</a></li>
-                    <li><a href="#">Pedidos</a></li>
+                    <li><a href="SesionAdmin.html">Panel Admin</a></li>
+                    <li><a href="libreria.html">Vista Cliente</a></li>
+                    <li><a href="consultarpedido.html">Pedidos</a></li>
                     <li><a href="#">Stock</a></li>
                 </ul>
             </nav>
         </details>
 
-        <section>
-            <img src="img/coki-logo.png" alt="Logo de Coki Librería">
+        <img src="img/coki-logo.png" alt="Logo de Coki Librería" class="header__logo">
 
-            <nav>
-                <ul>
-                    <li><a href="#">Librería</a></li>
-                    <li><a href="#">Impresiones</a></li>
-                    <li><a href="#">Consultar pedido</a></li>
-                </ul>
-            </nav>
-        </section>
+        <nav aria-label="Secciones principales">
+            <ul>
+                <li><a href="libreria.html">Librería</a></li>
+                <li><a href="impresiones.html">Impresiones</a></li>
+                <li><a href="consultarpedido.html">Consultar pedido</a></li>
+            </ul>
+        </nav>
 
     </header>
 
     <main>
 
-        <h1>Categorías</h1>
+        <h1>Coki Librería</h1>
 
         <section>
 
-            <article>
-                <a href="#">
-                    <img src="img/utilesescolares.png" alt="Útiles escolares">
-                </a>
+            <h2>Categorías</h2>
+
+            <article class="card">
+                <div class="card__media">
+                    <img src="img/utilesescolares.png" alt="Útiles escolares de Coki Librería">
+                </div>
+                <div class="card__body">
+                    <h3>Útiles escolares</h3>
+                    <a class="boton boton--primario card__btn" href="libreria.html">Ver útiles escolares</a>
+                </div>
             </article>
 
-            <article>
-                <a href="#">
-                    <img src="img/impresiones.png" alt="Impresiones">
-                </a>
+            <article class="card">
+                <div class="card__media">
+                    <img src="img/impresiones.png" alt="Servicio de impresiones de Coki Librería">
+                </div>
+                <div class="card__body">
+                    <h3>Impresiones</h3>
+                    <a class="boton boton--primario card__btn" href="impresiones.html">Ir a impresiones</a>
+                </div>
             </article>
 
-            <article>
-                <a href="#">
-                    <img src="img/consultas.png" alt="Consultas">
-                </a>
+            <article class="card">
+                <div class="card__media">
+                    <img src="img/consultas.png" alt="Consulta de pedidos de Coki Librería">
+                </div>
+                <div class="card__body">
+                    <h3>Consultar pedido</h3>
+                    <a class="boton boton--primario card__btn" href="consultarpedido.html">Consultar mi pedido</a>
+                </div>
             </article>
 
         </section>
