@@ -1,115 +1,73 @@
 <!doctype html>
 <html lang="es">
+  <head>
+    <meta charset="utf-8" />
 
-<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta charset="utf-8">
-
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1">
-
-    <meta name="description"
-        content="Servicio de impresiones de Coki Librería. Elegí el tipo de impresión, papel y adjuntá tu archivo.">
+    <meta
+      name="description"
+      content="Servicio de impresiones de Coki Librería. Elegí el tipo de impresión, papel y adjuntá tu archivo."
+    />
 
     <title>Impresiones - Coki Librería</title>
 
-    <link rel="icon" href="coki-logo.ico">
+    <link rel="icon" href="img/coki-logo.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-</head>
-
-<body>
-
+  <body data-page="impresiones">
     <main>
+      <header>
+        <img src="img/coki-logo.png" alt="Logo de Coki Librería" />
 
-        <header>
+        <h1>Servicio de impresiones</h1>
 
-            <img src="img/coki-logo.png"
-                alt="Logo de Coki Librería">
+        <p>Configurá tu impresión y agregala al carrito.</p>
+      </header>
 
-            <h1>Servicio de impresiones</h1>
+      <section>
+        <h2>Opciones de impresión</h2>
 
-            <p>
-                Configurá tu impresión y agregala al carrito.
-            </p>
+        <form>
+          <label for="tipo-impresion"> Tipo de impresión </label>
 
-        </header>
+          <select id="tipo-impresion" name="tipo-impresion">
+            <option value="byn">Blanco y negro</option>
 
+            <option value="color">Color</option>
+          </select>
 
-        <section>
+          <label for="tipo-papel"> Tipo de papel </label>
 
-            <h2>Opciones de impresión</h2>
+          <select id="tipo-papel" name="tipo-papel">
+            <option value="comun">Papel común</option>
 
-            <form>
+            <option value="fotografico">Papel fotográfico</option>
 
-                <label for="tipo-impresion">
-                    Tipo de impresión
-                </label>
+            <option value="adhesivo">Papel adhesivo</option>
+          </select>
 
-                <select id="tipo-impresion"
-                    name="tipo-impresion">
+          <label for="descripcion"> Descripción de la impresión </label>
 
-                    <option value="byn">
-                        Blanco y negro
-                    </option>
+          <textarea
+            id="descripcion"
+            name="descripcion"
+            rows="3"
+            placeholder="Detalles sobre la impresión"
+          ></textarea>
 
-                    <option value="color">
-                        Color
-                    </option>
+          <label for="archivo"> Adjuntar archivo </label>
 
-                </select>
+          <input type="file" id="archivo" name="archivo" />
 
-
-                <label for="tipo-papel">
-                    Tipo de papel
-                </label>
-
-                <select id="tipo-papel"
-                    name="tipo-papel">
-
-                    <option value="comun">
-                        Papel común
-                    </option>
-
-                    <option value="fotografico">
-                        Papel fotográfico
-                    </option>
-
-                    <option value="adhesivo">
-                        Papel adhesivo
-                    </option>
-
-                </select>
-
-
-                <label for="descripcion">
-                    Descripción de la impresión
-                </label>
-
-                <textarea id="descripcion"
-                    name="descripcion"
-                    rows="3"
-                    placeholder="Detalles sobre la impresión"></textarea>
-
-
-                <label for="archivo">
-                    Adjuntar archivo
-                </label>
-
-                <input type="file"
-                    id="archivo"
-                    name="archivo">
-
-
-                <button type="button">
-                    Agregar al carrito
-                </button>
-
-            </form>
-
-        </section>
-
+          <button type="button">Agregar al carrito</button>
+        </form>
+      </section>
     </main>
 
-</body>
-
+    <footer>
+      <p>Coki Librería</p>
+    </footer>
+  </body>
 </html>

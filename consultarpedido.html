@@ -1,217 +1,145 @@
 <!doctype html>
 <html lang="es">
+  <head>
+    <meta charset="utf-8" />
 
-<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
 
-    <meta charset="utf-8">
-
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1">
-
-    <meta name="description"
-        content="Consultá el estado de tu pedido de Coki Librería utilizando tu número de retiro o teléfono.">
+    <meta
+      name="description"
+      content="Consultá el estado de tu pedido de Coki Librería utilizando tu número de retiro o teléfono."
+    />
 
     <title>Consultar pedido - Coki Librería</title>
 
-    <link rel="icon" href="coki-logo.ico">
+    <link rel="icon" href="img/coki-logo.png" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
 
-</head>
-
-<body data-page="consultarpedido">
-
+  <body data-page="consultarpedido">
     <main>
+      <header class="barra">
+        <details class="menu">
+          <summary class="menu__toggle">
+            <span>Menú</span>
+            <span class="menu__arrow" aria-hidden="true"></span>
+          </summary>
 
-        <header>
+          <nav class="menu__panel" aria-label="Menú">
+            <ul>
+              <li><a href="MenuPrincipal.html">Volver al inicio</a></li>
+              <li>
+                <a
+                  href="SesionUsuario.html"
+                  id="clientSessionButton"
+                  data-menu-action="login"
+                  >Iniciar sesión</a
+                >
+              </li>
+              <li><a href="consultarpedido.html">Mis pedidos</a></li>
+            </ul>
+          </nav>
+        </details>
 
-            <button type="button"
-                aria-label="Abrir menú"
-                aria-expanded="false">
-            </button>
+        <a href="MenuPrincipal.html" aria-label="Volver al inicio">
+          <img
+            src="img/coki-logo.png"
+            alt="Logo de Coki Librería"
+            class="header__logo"
+          />
+        </a>
 
-            <section>
+        <nav aria-label="Secciones principales">
+          <a href="libreria.html">Librería</a>
+          <a href="impresiones.html">Impresiones</a>
+          <a href="consultarpedido.html">Consultar pedido</a>
 
-                <button type="button"
-                    onclick="window.location.href='menuprincipal.html'"
-                    aria-label="Volver al menú principal">
+          <button
+            id="openCartButton"
+            type="button"
+            class="nav__cart"
+            aria-label="Ver carrito"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M6 7h14l-1.4 8.2H7.2L6 7Zm0 0 1.4-3h3.2M9 20h.01M17 20h.01"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span id="cartCountBadge">0</span>
+          </button>
+        </nav>
+      </header>
 
-                    <img src="img/coki-logo.png"
-                        alt="Logo de Coki Librería">
+      <section id="clientLoginModal" hidden>
+        <form id="clientLoginForm">
+          <section>
+            <img src="img/coki-logo.png" alt="Logo de Coki Librería" />
 
-                </button>
+            <h2>Inicio de sesión cliente</h2>
+          </section>
 
-                <nav aria-label="Secciones principales">
+          <section>
+            <label for="clientLoginName"> Nombre y apellido </label>
 
-                    <a href="libreria.html">
-                        Librería
-                    </a>
+            <input id="clientLoginName" required autocomplete="name" />
+          </section>
 
-                    <a href="impresiones.html">
-                        Impresiones
-                    </a>
+          <section>
+            <label for="clientLoginPhone"> Teléfono </label>
 
-                    <a href="consultarpedido.html">
-                        Consultar pedido
-                    </a>
+            <input id="clientLoginPhone" required autocomplete="tel" />
+          </section>
 
-                </nav>
+          <button type="submit">Iniciar sesión</button>
 
-            </section>
+          <button type="button" id="createClientAccount">Crear cuenta</button>
 
+          <button type="button" id="closeClientLogin">Cerrar</button>
+        </form>
+      </section>
 
-            <button id="openCartButton"
-                type="button"
-                aria-label="Ver carrito">
+      <article>
+        <section id="flowHeader">
+          <button
+            type="button"
+            onclick="window.location.href = 'MenuPrincipal.html'"
+          >
+            Volver al menú
+          </button>
 
-                <span id="cartCountBadge">
-                    🛒
-                </span>
+          <section>
+            <h1>Consultar pedido</h1>
 
-            </button>
-
-
-            <nav id="menuPanel" hidden>
-
-                <section>
-
-                    <strong>Cuenta cliente</strong>
-
-                    <span id="clientSessionLabel">
-                        Ingresa para completar tu pedido
-                    </span>
-
-                </section>
-
-                <button type="button"
-                    data-menu-action="login"
-                    id="clientSessionButton">
-
-                    Iniciar sesión
-
-                </button>
-
-            </nav>
-
-        </header>
-
-
-        <section id="clientLoginModal" hidden>
-
-            <form id="clientLoginForm">
-
-                <section>
-
-                    <img src="img/coki-logo.png"
-                        alt="Logo de Coki Librería">
-
-                    <h2>
-                        Inicio de sesión cliente
-                    </h2>
-
-                </section>
-
-
-                <section>
-
-                    <label for="clientLoginName">
-                        Nombre y apellido
-                    </label>
-
-                    <input id="clientLoginName"
-                        required
-                        autocomplete="name">
-
-                </section>
-
-
-                <section>
-
-                    <label for="clientLoginPhone">
-                        Teléfono
-                    </label>
-
-                    <input id="clientLoginPhone"
-                        required
-                        autocomplete="tel">
-
-                </section>
-
-
-                <button type="submit">
-                    Iniciar sesión
-                </button>
-
-                <button type="button"
-                    id="createClientAccount">
-                    Crear cuenta
-                </button>
-
-                <button type="button"
-                    id="closeClientLogin">
-                    Cerrar
-                </button>
-
-            </form>
-
+            <p>Buscá tu pedido con el número de retiro o teléfono.</p>
+          </section>
         </section>
 
+        <section id="orderScreen">
+          <section id="consultFlow">
+            <h2>Estado de tu pedido</h2>
 
-        <article>
+            <form id="searchForm">
+              <section>
+                <label for="query"> Número de retiro o teléfono </label>
 
-            <section id="flowHeader">
+                <input id="query" placeholder="Ej: R-00024" />
+              </section>
 
-                <button type="button"
-                    onclick="window.location.href='menuprincipal.html'">
-                    Volver al menú
-                </button>
+              <button type="submit">Buscar pedido</button>
+            </form>
 
-                <section>
-
-                    <h1>Consultar pedido</h1>
-
-                    <p>
-                        Buscá tu pedido con el número de retiro o teléfono.
-                    </p>
-
-                </section>
-
-            </section>
-
-
-            <section id="orderScreen">
-
-                <section id="consultFlow">
-
-                    <h2>Estado de tu pedido</h2>
-
-                    <form id="searchForm">
-
-                        <section>
-
-                            <label for="query">
-                                Número de retiro o teléfono
-                            </label>
-
-                            <input id="query"
-                                placeholder="Ej: R-00024">
-
-                        </section>
-
-                        <button type="submit">
-                            Buscar pedido
-                        </button>
-
-                    </form>
-
-                    <section id="searchResults"></section>
-
-                </section>
-
-            </section>
-
-        </article>
-
+            <section id="searchResults"></section>
+          </section>
+        </section>
+      </article>
     </main>
 
-</body>
-
+    <footer>
+      <p>Coki Librería</p>
+    </footer>
+  </body>
 </html>
