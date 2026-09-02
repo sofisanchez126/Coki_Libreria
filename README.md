@@ -262,4 +262,3 @@ Los cambios se desarrollan en las ramas de trabajo, luego se integran a `Dev` me
 
 Se utilizaron herramientas de Inteligencia Artificial como apoyo para consultar, aprender y generar ideas durante el desarrollo.
 
-Los integrantes deben comprender el código utilizado y poder explicar las decisiones relacionadas con HTML, CSS, Flexbox, Grid, Responsive Design y SEO.
