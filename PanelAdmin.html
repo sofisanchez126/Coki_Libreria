@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Panel de administración de Coki Librería.">
+    <title>Panel de administrador | Coki Librería</title>
+    <link rel="icon" href="img/coki-logo.png">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body data-page="admin">
+    <header class="barra">
+        <details class="menu">
+            <summary class="menu__toggle"><span>Menú</span><span class="menu__arrow" aria-hidden="true"></span></summary>
+            <nav class="menu__panel" aria-label="Menú de administración">
+                <ul>
+                    <li><a href="MenuPrincipal.html">Inicio</a></li>
+                    <li><a href="#pedidos">Pedidos</a></li>
+                    <li><a href="#stock">Stock</a></li>
+                    <li><a href="SesionAdmin.html">Cerrar sesión</a></li>
+                </ul>
+            </nav>
+        </details>
+        <img src="img/coki-logo.png" alt="Logo de Coki Librería" class="header__logo">
+        <nav aria-label="Navegación principal"><ul><li><a href="MenuPrincipal.html">Volver al inicio</a></li></ul></nav>
+    </header>
+
+    <main class="admin-main">
+        <section class="admin-heading">
+            <p class="admin-kicker">Gestión interna</p>
+            <h1>Panel de administrador</h1>
+        </section>
+
+        <section class="admin-summary" aria-label="Resumen del negocio">
+            <article class="admin-stat"><span>Pedidos pendientes</span><strong>12</strong><small>Requieren atención</small></article>
+            <article class="admin-stat"><span>Ventas del día</span><strong>$48.750</strong><small>+8% respecto a ayer</small></article>
+            <article class="admin-stat"><span>Productos con poco stock</span><strong>7</strong><small>Para reponer</small></article>
+        </section>
+
+        <section class="admin-panel" id="pedidos">
+            <div class="admin-section-header"><div><p class="admin-kicker">Seguimiento</p><h2>Estado de pedidos</h2></div><a class="boton boton--primario" href="consultarpedido.html">Consultar pedidos</a></div>
+            <div class="admin-filters"><label>Estado<select><option>Todos los estados</option><option>Pendiente</option><option>En preparación</option><option>Listo para retirar</option></select></label><label>Buscar<input type="search" placeholder="Cliente o número de retiro"></label></div>
+            <div class="admin-table-wrap"><table class="admin-table"><thead><tr><th>Retiro</th><th>Cliente</th><th>Detalle</th><th>Estado</th><th>Total</th><th>Acción</th></tr></thead><tbody><tr><td>#1048</td><td>Martina López</td><td>20 fotocopias A4</td><td><span class="admin-status admin-status--pending">Pendiente</span></td><td>$1.800</td><td><button type="button">Gestionar</button></td></tr><tr><td>#1047</td><td>Tomás García</td><td>Cuaderno + lápices</td><td><span class="admin-status admin-status--ready">Listo</span></td><td>$6.450</td><td><button type="button">Ver pedido</button></td></tr><tr><td>#1046</td><td>Lucía Fernández</td><td>Impresión color</td><td><span class="admin-status admin-status--progress">En preparación</span></td><td>$2.300</td><td><button type="button">Gestionar</button></td></tr></tbody></table></div>
+        </section>
+
+        <section class="admin-panel" id="stock">
+            <div class="admin-section-header"><div><p class="admin-kicker">Inventario</p><h2>Stock de librería</h2></div><button class="boton boton--primario" type="button">Agregar producto</button></div>
+            <div class="admin-filters"><label>Buscar producto<input type="search" placeholder="Nombre del producto"></label><label>Categoría<select><option>Todas las categorías</option><option>Útiles escolares</option><option>Cuadernos</option></select></label></div>
+            <div class="admin-stock-grid"><article><strong>Cuaderno ABC tapa dura</strong><span>Útiles escolares</span><b class="stock-ok">24 unidades</b><button type="button">Actualizar stock</button></article><article><strong>Resma A4 80g</strong><span>Impresiones</span><b class="stock-low">3 unidades</b><button type="button">Actualizar stock</button></article><article><strong>Lapicera azul</strong><span>Útiles escolares</span><b class="stock-ok">56 unidades</b><button type="button">Actualizar stock</button></article></div>
+        </section>
+    </main>
+    <footer><p>Coki Librería</p></footer>
+</body>
+</html>
+
