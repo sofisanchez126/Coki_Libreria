@@ -1,88 +1,163 @@
-# Coki Librería
+Coki Librería
+Integrantes
+Nahum Saravia — @Nahum-Saravia
+Sofía Sánchez — @sofisanchez126
+Juan Cruz Carrer — @juancarrer11
+Descripción breve
 
-Interfaz web de una librería de barrio: catálogo de útiles escolares, servicio de
-impresiones y consulta del estado de pedidos. Trabajo Práctico 2 — HTML + CSS
-(Flexbox, Grid, variables CSS y Responsive Design), versionado con Git y GitHub.
+Coki Librería es un proyecto desarrollado para organizar y automatizar la gestión de una librería, especialmente los pedidos de impresiones, las consultas de clientes y el control de stock.
 
-## Integrantes
+El sistema busca facilitar la identificación y seguimiento de pedidos, evitar la acumulación de impresiones no retiradas y mejorar la atención al cliente.
 
-- Nahum Saravia — [@Nahum-Saravia](https://github.com/Nahum-Saravia) (CSS / estilos)
-- Sofía Sánchez — [@sofisanchez126](https://github.com/sofisanchez126)
-- _(completar tercer integrante)_
+Páginas del proyecto
+Página	Contenido
+MenuPrincipal.html	Página de inicio
+libreria.html	Productos y útiles escolares
+impresiones.html	Solicitud de impresiones
+consultarpedido.html	Consulta de pedidos
+SesionUsuario.html	Inicio de sesión del cliente
+SesionAdmin.html	Inicio de sesión del administrador
+Tecnologías utilizadas
+HTML5
 
-## Descripción breve
+Se utilizó HTML5 semántico con etiquetas como header, nav, main, section, article, footer y form.
 
-El sitio está formado por varias páginas HTML semánticas que comparten una única
-hoja de estilos externa (`style.css`):
+CSS3
 
-| Página | Contenido |
-| --- | --- |
-| `MenuPrincipal.html` | Inicio con las categorías principales |
-| `libreria.html` | Búsqueda y selección de productos de librería |
-| `impresiones.html` | Formulario para configurar una impresión |
-| `consultarpedido.html` | Búsqueda del estado de un pedido |
-| `SesionUsuario.html` | Inicio de sesión de cliente |
-| `SesionAdmin.html` | Inicio de sesión de administrador |
+Se utilizaron variables CSS, Flexbox, CSS Grid, Media Queries, unidades relativas, clamp() y Responsive Design.
 
-## Tecnologías utilizadas
+Google Fonts
+Fredoka para títulos.
+Nunito para textos.
+Git y GitHub
 
-- HTML5 semántico (`header`, `nav`, `main`, `section`, `article`, `footer`, `form`)
-- CSS3: variables (`:root` / `var()`), Flexbox, CSS Grid, Media Queries, Box Model
-- Tipografías de Google Fonts: **Fredoka** (títulos) y **Nunito** (texto)
-- Git y GitHub (ramas `main` / `dev`, Pull Requests)
+Se utilizaron ramas, commits y Pull Requests para el trabajo colaborativo.
 
-## ¿Dónde utilizamos Flexbox?
+¿Dónde utilizamos Flexbox?
 
-- **Navegación del `header`** (`nav` / `nav ul`): los enlaces se distribuyen en fila
-  con `display: flex`, `gap` y `flex-wrap`.
-- **Barra de app** de `libreria.html` y `consultarpedido.html`: el logo, el menú y
-  el carrito se alinean con `display: flex` y `align-items: center`.
-- **Formulario de login (`#clientLoginForm`)** y **footer**: columnas centradas con
-  Flexbox.
+Flexbox se utilizó principalmente para organizar y alinear elementos.
 
-## ¿Dónde utilizamos Grid?
+Header y navegación: distribución de los enlaces.
+Barra de aplicación: organización del logo, menú y carrito.
+Formularios: alineación de los elementos.
+Footer: distribución y centrado del contenido.
 
-- **Sección de categorías del inicio** (`[data-page="inicio"] main > section`):
-  `display: grid` con `grid-template-columns: repeat(auto-fit, minmax(220px, 1fr))`
-  para que las tarjetas se reacomoden solas.
-- **Listado de productos** (`#productList`) y **resultados de pedido**
-  (`#searchResults`): grillas con `repeat(auto-fill, minmax(...))`.
-- **Formulario de impresiones** en pantallas medianas: grid de 2 columnas dentro de
-  una media query.
+Ejemplo:
 
-## ¿Qué variables CSS creamos?
+display: flex;
+align-items: center;
+gap: ...;
+¿Dónde utilizamos Grid?
 
-Definidas en `:root` y usadas con `var()`:
+CSS Grid se utilizó específicamente en diferentes secciones del proyecto:
 
-- **Colores de marca:** `--color-primario`, `--color-primario-oscuro`,
-  `--color-secundario`, `--color-secundario-oscuro`
-- **Neutros y superficies:** `--color-fondo`, `--color-superficie`,
-  `--color-superficie-alt`, `--color-texto`, `--color-texto-suave`, `--color-borde`
-- **Estados:** `--color-exito`, `--color-error`
-- **Tipografías:** `--fuente-titulos`, `--fuente-texto`
-- **Espaciado:** `--esp-xs`, `--esp-sm`, `--esp-md`, `--esp-lg`, `--esp-xl`
-- **Bordes y radios:** `--radio-sm`, `--radio-md`, `--radio-lg`, `--borde-fino`
-- **Sombras:** `--sombra-sm`, `--sombra-md`, `--sombra-lg`
-- **Layout:** `--ancho-contenido`
+MenuPrincipal.html
 
-## ¿Cómo implementamos el Responsive Design?
+Se utilizó Grid en la sección de categorías, donde se muestran las tarjetas de:
 
-- **Enfoque mobile first:** los estilos base están pensados para celular (una sola
-  columna) y se van ampliando con media queries.
-- **Media queries** en `min-width: 600px` (tablet) y `min-width: 992px` (escritorio):
-  el header del inicio pasa a fila, el formulario de impresiones a 2 columnas y las
-  grillas usan celdas más anchas.
-- **Unidades relativas:** `rem` para tipografía y espaciados, `%` y `fr` para anchos,
-  `vw` / `vh` para medidas de viewport (`min-height: 100vh`, `width: min(92vw, 400px)`),
-  `px` sólo para bordes y detalles finos.
-- **`clamp()`** en los títulos para que escalen entre un mínimo y un máximo.
-- **Grillas fluidas** con `auto-fit` / `auto-fill` que cambian la cantidad de columnas
-  según el ancho disponible.
-- `<meta name="viewport">` en todas las páginas.
+Útiles escolares.
+Impresiones.
+Consultas de pedidos.
 
-## Estructura del proyecto
+La grilla permite organizar las tarjetas en columnas y adaptarlas automáticamente al ancho disponible.
 
-```
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+libreria.html
+
+Se utilizó Grid en el listado de productos, para organizar los productos en filas y columnas.
+
+La cantidad de columnas se adapta según el espacio disponible mediante:
+
+grid-template-columns: repeat(auto-fill, minmax(...));
+consultarpedido.html
+
+Se utilizó Grid en la sección donde se muestran los resultados de las consultas de pedidos, permitiendo distribuir la información de manera ordenada.
+
+impresiones.html
+
+Se utilizó Grid en el formulario de solicitud de impresiones, principalmente en pantallas más grandes, donde los campos pueden distribuirse en dos columnas.
+
+¿Qué variables CSS creamos?
+
+Las variables se definieron dentro de :root y se utilizaron mediante var().
+
+Colores
+--color-tinta
+--color-primario
+--color-primario-oscuro
+--color-acento
+--color-secundario
+--color-fondo
+--color-superficie
+--color-texto
+--color-texto-suave
+--color-borde
+Tipografías y espaciados
+--fuente-titulos
+--fuente-texto
+--esp-xs
+--esp-sm
+--esp-md
+--esp-lg
+--esp-xl
+Bordes, sombras y layout
+--radio-sm
+--radio-md
+--radio-lg
+--borde
+--sombra-dura
+--sombra-dura-sm
+--sombra-suave
+--ancho-contenido
+
+Las variables permiten mantener un diseño consistente y facilitar modificaciones en el CSS.
+
+¿Cómo implementamos el Responsive Design?
+
+Se utilizó un enfoque Mobile First, adaptando el diseño mediante Media Queries.
+
+@media (min-width: 600px)
+@media (min-width: 992px)
+
+También se utilizaron unidades relativas como rem, %, fr, vw y vh, además de clamp().
+
+Las grillas utilizan auto-fit y auto-fill para adaptar automáticamente la cantidad de columnas.
+
+Todas las páginas incluyen:
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+Estrategias SEO implementadas
+
+Se implementaron 5 estrategias básicas de SEO:
+
+1. Títulos descriptivos
+
+Cada página posee un <title> relacionado con su contenido.
+
+2. Meta descripción
+
+Se utilizó <meta name="description"> para describir brevemente cada página.
+
+3. HTML5 semántico
+
+Se utilizaron etiquetas como header, nav, main, section y footer.
+
+4. Texto alternativo en imágenes
+
+Las imágenes poseen atributos alt descriptivos.
+
+<img src="img/utilesescolares.png" alt="Útiles escolares de Coki Librería">
+
+5. Diseño Responsive
+
+El sitio se adapta a celulares, tablets y computadoras mediante Responsive Design y Meta Viewport.
+
+
+Estructura del proyecto
+
 Coki_Libreria/
 ├── img/
 │   ├── coki-logo.png
@@ -97,12 +172,15 @@ Coki_Libreria/
 ├── SesionUsuario.html
 ├── SesionAdmin.html
 └── README.md
-```
 
-## Flujo de trabajo con Git
+Flujo de trabajo con Git y GitHub
 
-1. Ramas `main` (entrega final) y `dev` (desarrollo).
-2. Todo el desarrollo se hace sobre `dev` (o ramas `feat/...` que se integran a `dev`).
-3. Commits frecuentes con mensajes claros y descriptivos.
-4. Pull Requests con compañeros asignados como revisores.
-5. Integración final de `dev` a `main`.
+Se trabajó con:
+
+main: versión final.
+dev: rama principal de desarrollo.
+Ramas de trabajo para cada integrante.
+Commits para registrar cambios.
+Pull Requests para integrar modificaciones.
+
+Finalmente, los cambios revisados de dev se integran a main.
