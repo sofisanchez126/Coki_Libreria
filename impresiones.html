@@ -18,9 +18,63 @@
 
   <body data-page="impresiones">
     <main>
-      <header>
-        <img src="img/coki-logo.png" alt="Logo de Coki Librería" />
+      <header class="barra">
+        <details class="menu">
+          <summary class="menu__toggle">
+            <span>Menú</span>
+            <span class="menu__arrow" aria-hidden="true"></span>
+          </summary>
 
+          <nav class="menu__panel" aria-label="Menú">
+            <ul>
+              <li><a href="MenuPrincipal.html">Volver al inicio</a></li>
+              <li>
+                <a
+                  href="SesionUsuario.html"
+                  id="clientSessionButton"
+                  data-menu-action="login"
+                  >Iniciar sesión</a
+                >
+              </li>
+              <li><a href="consultarpedido.html">Mis pedidos</a></li>
+            </ul>
+          </nav>
+        </details>
+
+        <a href="MenuPrincipal.html" aria-label="Volver al inicio">
+          <img
+            src="img/coki-logo.png"
+            alt="Logo de Coki Librería"
+            class="header__logo"
+          />
+        </a>
+
+        <nav aria-label="Secciones principales">
+          <a href="libreria.html">Librería</a>
+          <a href="impresiones.html">Impresiones</a>
+          <a href="consultarpedido.html">Consultar pedido</a>
+
+          <button
+            id="openCartButton"
+            type="button"
+            class="nav__cart"
+            aria-label="Ver carrito"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M6 7h14l-1.4 8.2H7.2L6 7Zm0 0 1.4-3h3.2M9 20h.01M17 20h.01"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+            <span id="cartCountBadge">0</span>
+          </button>
+        </nav>
+      </header>
+
+      <header class="hero">
         <h1>Servicio de impresiones</h1>
 
         <p>Configurá tu impresión y agregala al carrito.</p>
