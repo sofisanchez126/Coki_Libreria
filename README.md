@@ -20,7 +20,7 @@ El sistema busca facilitar la identificación y seguimiento de pedidos, evitar l
 
 | Página | Contenido |
 |---|---|
-| `MenuPrincipal.html` | Página de inicio |
+| `index.html` | Página de inicio |
 | `libreria.html` | Productos y útiles escolares |
 | `impresiones.html` | Solicitud de impresiones |
 | `consultarpedido.html` | Consulta de pedidos |
@@ -81,7 +81,7 @@ gap: ...;
 
 CSS Grid se utilizó específicamente en diferentes páginas del proyecto.
 
-### `MenuPrincipal.html`
+### `index.html`
 
 Se utilizó Grid en la **sección de categorías**, donde se muestran las tarjetas de:
 
@@ -233,7 +233,7 @@ Coki_Libreria/
 │   ├── impresiones.png
 │   └── utilesescolares.png
 ├── style.css
-├── MenuPrincipal.html
+├── index.html
 ├── libreria.html
 ├── impresiones.html
 ├── consultarpedido.html
