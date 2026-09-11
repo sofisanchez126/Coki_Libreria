@@ -14,7 +14,7 @@
    8.  Menú desplegable animado (<details>)
    9.  Carrito y badge
    10. Modal de inicio de sesión
-   11. Inicio (MenuPrincipal) — Grid de cards
+   11. Inicio (index) — Grid de cards
    12. Librería — búsqueda + grid de productos
    13. Impresiones — formulario
    14. Consultar pedido
@@ -640,7 +640,7 @@ nav a:hover::after {
 
 
 /* ============================================================
-   11. INICIO (MenuPrincipal) — GRID DE CARDS
+   11. INICIO (index) — GRID DE CARDS
    ============================================================ */
 [data-page="inicio"] main > h1 {
     text-align: center;
