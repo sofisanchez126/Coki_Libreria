@@ -293,7 +293,7 @@ body:not([data-page^="sesion"]) textarea {
 }
 
 /* Formularios "tarjeta": centrados, fondo crema, borde y sombra dura */
-body:not([data-page^="sesion"]) main form {
+/* body:not([data-page^="sesion"]) main form {
     display: flex;
     flex-direction: column;
     gap: var(--esp-md);
@@ -305,44 +305,44 @@ body:not([data-page^="sesion"]) main form {
     border: var(--borde);
     border-radius: var(--radio-lg);
     box-shadow: var(--sombra-dura);
-}
+} */
 
-body:not([data-page^="sesion"]) main form h2 {
+/* body:not([data-page^="sesion"]) main form h2 {
     font-weight: 700;
-}
+} */
 
-body:not([data-page^="sesion"]) main form fieldset {
+/* body:not([data-page^="sesion"]) main form fieldset {
     border: none;
     padding: 0;
     display: flex;
     flex-direction: column;
     gap: var(--esp-md);
-}
+} */
 
-body:not([data-page^="sesion"]) main form legend {
+/* body:not([data-page^="sesion"]) main form legend {
     font-family: var(--fuente-titulos);
     font-weight: 600;
     margin-bottom: var(--esp-sm);
-}
+} */
 
-body:not([data-page^="sesion"]) main form .campo {
+/* body:not([data-page^="sesion"]) main form .campo {
     text-align: left;
-}
+} */
 
-body:not([data-page^="sesion"]) main form a {
+/* body:not([data-page^="sesion"]) main form a {
     font-weight: 800;
     color: var(--color-tinta);
-}
+} */
 
 /* Formularios que ya viven dentro de una tarjeta -> se muestran "planos" */
-#orderScreen form {
+/* #orderScreen form {
     width: 100%;
     padding: 0;
     background-color: transparent;
     border: none;
     box-shadow: none;
     text-align: left;
-}
+} */
 
 
 /* ============================================================
@@ -1084,13 +1084,13 @@ body:not([data-page^="sesion"]) main form a {
     min-width: 240px;
 }
 
-#orderScreen {
+/* #orderScreen {
     background-color: var(--color-superficie);
     border: var(--borde);
     border-radius: var(--radio-md);
     box-shadow: var(--sombra-dura);
     padding: var(--esp-lg);
-}
+} */
 
 #schoolFlow h2,
 #consultFlow h2 {
@@ -1131,19 +1131,19 @@ body:not([data-page^="sesion"]) main form a {
     padding-top: var(--esp-xl);
 }
 
-[data-page="impresiones"] form {
+/* [data-page="impresiones"] form {
     width: min(100%, 560px);
     text-align: left;
-}
+} */
 
-[data-page="impresiones"] form label {
+/* [data-page="impresiones"] form label {
     margin-top: var(--esp-sm);
-}
+} */
 
-[data-page="impresiones"] form button {
+/* [data-page="impresiones"] form button {
     margin-top: var(--esp-md);
     align-self: flex-start;
-}
+} */
 
 
 /* ============================================================
@@ -1276,12 +1276,29 @@ body > footer p {
 .admin-heading h1 { color: inherit; margin-bottom: var(--esp-xs); }
 .admin-kicker { color: var(--color-primario); font-weight: 800; text-transform: uppercase; letter-spacing: .08em; font-size: .78rem; }
 .admin-heading .admin-kicker { color: var(--color-acento); }
-.admin-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: var(--esp-md); margin-bottom: var(--esp-lg); }
-.admin-stat, .admin-panel { background: var(--color-superficie); border: var(--borde); border-radius: var(--radio-md); box-shadow: var(--sombra-dura); }
-.admin-stat { padding: var(--esp-md); display: grid; gap: var(--esp-xs); }
-.admin-stat strong { font: 700 clamp(1.6rem, 4vw, 2.3rem) var(--fuente-titulos); color: var(--color-tinta); }
-.admin-stat small { color: var(--color-texto-suave); }
-.admin-panel { padding: var(--esp-lg); margin-bottom: var(--esp-lg); }
+/* .admin-summary { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: var(--esp-md); margin-bottom: var(--esp-lg); } */
+/* .admin-stat, .admin-panel { background: var(--color-superficie); border: var(--borde); border-radius: var(--radio-md); box-shadow: var(--sombra-dura); } */
+/* .admin-stat { padding: var(--esp-md); display: grid; gap: var(--esp-xs); } */
+/* .admin-stat strong { font: 700 clamp(1.6rem, 4vw, 2.3rem) var(--fuente-titulos); color: var(--color-tinta); } */
+/* .admin-stat small { color: var(--color-texto-suave); } */
+/* .admin-panel { padding: var(--esp-lg); margin-bottom: var(--esp-lg); } */
+
+/* --- Cards del panel (Bootstrap) --- */
+.coki-admin-stat {
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-xs);
+}
+
+.coki-admin-stat__value {
+    font: 700 clamp(1.6rem, 4vw, 2.3rem) var(--fuente-titulos);
+    color: var(--color-tinta);
+}
+
+.coki-admin-stat__hint {
+    color: var(--color-texto-suave);
+}
+
 .admin-section-header { display: flex; justify-content: space-between; align-items: center; gap: var(--esp-md); margin-bottom: var(--esp-md); }
 .admin-section-header h2 { margin: 0; }
 .admin-filters { display: flex; flex-wrap: wrap; gap: var(--esp-md); margin-bottom: var(--esp-md); }
@@ -1295,7 +1312,7 @@ body > footer p {
 .admin-stock-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: var(--esp-md); }
 .admin-stock-grid article { display: grid; gap: .35rem; padding: var(--esp-md); background: var(--color-superficie-alt); border: var(--borde); border-radius: var(--radio-sm); }
 .admin-stock-grid span { color: var(--color-texto-suave); font-size: .9rem; }.admin-stock-grid b { font-family: var(--fuente-titulos); }.stock-ok { color: var(--color-exito); }.stock-low { color: var(--color-error); }
-@media (max-width: 600px) { .admin-section-header { align-items: flex-start; flex-direction: column; } .admin-panel { padding: var(--esp-md); } }
+@media (max-width: 600px) { .admin-section-header { align-items: flex-start; flex-direction: column; } /* .admin-panel { padding: var(--esp-md); } */ }
 
 
 /* ============================================================
@@ -1317,18 +1334,18 @@ body > footer p {
     }
 
     /* Formulario de impresiones en 2 columnas */
-    [data-page="impresiones"] form {
+    /* [data-page="impresiones"] form {
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: var(--esp-md);
-    }
+    } */
 
-    [data-page="impresiones"] form label,
+    /* [data-page="impresiones"] form label,
     [data-page="impresiones"] form textarea,
     [data-page="impresiones"] form input[type="file"],
     [data-page="impresiones"] form button {
         grid-column: 1 / -1;
-    }
+    } */
 }
 
 /* ---------- Escritorio chico: 850px o más ---------- */
@@ -1426,12 +1443,14 @@ body > footer p {
     box-shadow: var(--sombra-dura);
 }
 
-.coki-card .form-control {
+.coki-card .form-control,
+.coki-card .form-select {
     border: var(--borde);
     box-shadow: var(--sombra-dura-sm);
 }
 
-.coki-card .form-control:focus {
+.coki-card .form-control:focus,
+.coki-card .form-select:focus {
     border-color: var(--color-secundario);
     box-shadow: 1px 1px 0 0 var(--color-acento);
 }
