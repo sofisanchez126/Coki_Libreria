@@ -146,21 +146,21 @@
           </section>
         </section>
 
-        <section id="orderScreen">
-          <section id="consultFlow">
-            <h2>Estado de tu pedido</h2>
+        <section id="orderScreen" class="card coki-card">
+          <section id="consultFlow" class="card-body">
+            <h2 class="card-title">Estado de tu pedido</h2>
 
             <form id="searchForm">
-              <section>
-                <label for="query"> Número de retiro o teléfono </label>
+              <div class="mb-3">
+                <label for="query" class="form-label">Número de retiro o teléfono</label>
 
-                <input id="query" placeholder="Ej: R-00024" />
-              </section>
+                <input id="query" class="form-control" placeholder="Ej: R-00024" />
+              </div>
 
               <button type="submit">Buscar pedido</button>
             </form>
 
-            <section id="searchResults"></section>
+            <div id="searchResults"></div>
           </section>
         </section>
       </article>
