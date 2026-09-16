@@ -12,66 +12,97 @@
     <title>Librería Coki - Útiles escolares</title>
 
     <link rel="icon" href="img/coki-logo.png" />
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
+    />
     <link rel="stylesheet" href="style.css" />
   </head>
 
   <body data-page="libreria">
     <main>
-      <header class="barra">
-        <details class="menu">
-          <summary class="menu__toggle">
-            <span>Menú</span>
-            <span class="menu__arrow" aria-hidden="true"></span>
-          </summary>
+      <nav class="navbar coki-navbar">
+        <div class="coki-navbar__inner">
 
-          <nav class="menu__panel" aria-label="Menú">
-            <ul>
-              <li><a href="index.html">Volver al inicio</a></li>
-              <li>
-                <a
-                  href="SesionUsuario.html"
-                  id="clientSessionButton"
-                  data-menu-action="login"
-                  >Iniciar sesión</a
-                >
-              </li>
-              <li><a href="consultarpedido.html">Mis pedidos</a></li>
+          <div class="dropdown coki-navbar__menu">
+            <button class="btn dropdown-toggle coki-navbar__toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Menú
+            </button>
+            <ul class="dropdown-menu coki-navbar__panel">
+              <li><a class="dropdown-item" href="index.html">Volver al inicio</a></li>
+              <li><a class="dropdown-item" href="SesionUsuario.html" id="clientSessionButton" data-menu-action="login">Iniciar sesión</a></li>
             </ul>
-          </nav>
-        </details>
+          </div>
 
-        <a href="index.html" aria-label="Volver al inicio">
-          <img
-            src="img/coki-logo.png"
-            alt="Logo de Coki Librería"
-            class="header__logo"
-          />
-        </a>
+          <a class="navbar-brand coki-navbar__brand" href="index.html" aria-label="Volver al inicio">
+            <img src="img/coki-logo.png" alt="Logo de Coki Librería" class="coki-navbar__logo" />
+          </a>
 
-        <nav aria-label="Secciones principales">
-          <a href="libreria.html">Librería</a>
-          <a href="impresiones.html">Impresiones</a>
-          <a href="consultarpedido.html">Consultar pedido</a>
+          <ul class="navbar-nav flex-row coki-navbar__links" aria-label="Secciones principales">
+            <li class="nav-item"><a class="nav-link coki-navbar__link" href="libreria.html">Librería</a></li>
+            <li class="nav-item"><a class="nav-link coki-navbar__link" href="impresiones.html">Impresiones</a></li>
+            <li class="nav-item"><a class="nav-link coki-navbar__link" href="consultarpedido.html">Pedidos</a></li>
+            <li class="nav-item">
+              <button id="openCartButton" type="button" class="coki-navbar__cart" aria-label="Ver carrito">
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                  <path
+                    d="M6 7h14l-1.4 8.2H7.2L6 7Zm0 0 1.4-3h3.2M9 20h.01M17 20h.01"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+                <span id="cartCountBadge">0</span>
+              </button>
+            </li>
+          </ul>
 
-          <button
-            id="openCartButton"
-            type="button"
-            class="nav__cart"
-            aria-label="Ver carrito"
-          >
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path
-                d="M6 7h14l-1.4 8.2H7.2L6 7Zm0 0 1.4-3h3.2M9 20h.01M17 20h.01"
-                stroke="currentColor"
-                stroke-width="1.8"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            <span id="cartCountBadge">0</span>
+          <button type="button" class="coki-navbar__hamburger" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu" aria-label="Abrir menú">
+            <i class="bi bi-list" aria-hidden="true"></i>
           </button>
-        </nav>
-      </header>
+
+        </div>
+      </nav>
+
+      <div class="offcanvas offcanvas-end coki-offcanvas" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel">
+        <div class="offcanvas-header coki-offcanvas__header">
+          <h2 class="offcanvas-title coki-offcanvas__title" id="mobileMenuLabel">Menú</h2>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Cerrar"></button>
+        </div>
+        <div class="offcanvas-body coki-offcanvas__body">
+          <ul class="coki-offcanvas__list">
+            <li><a href="libreria.html">Librería</a></li>
+            <li><a href="impresiones.html">Impresiones</a></li>
+            <li><a href="consultarpedido.html">Pedidos</a></li>
+          </ul>
+
+          <hr class="coki-offcanvas__sep">
+
+          <ul class="coki-offcanvas__list">
+            <li><a href="index.html">Volver al inicio</a></li>
+            <li><a href="SesionUsuario.html" data-menu-action="login">Iniciar sesión</a></li>
+            <li>
+              <button type="button" class="coki-offcanvas__cart">
+                <span class="coki-offcanvas__cart-icon">
+                  <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                    <path
+                      d="M6 7h14l-1.4 8.2H7.2L6 7Zm0 0 1.4-3h3.2M9 20h.01M17 20h.01"
+                      stroke="currentColor"
+                      stroke-width="1.8"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  <span>0</span>
+                </span>
+                <span>Carrito</span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
 
       <section id="clientLoginModal" hidden>
         <form id="clientLoginForm">
@@ -103,10 +134,7 @@
 
       <article>
         <section id="flowHeader">
-          <button
-            type="button"
-            onclick="window.location.href = 'index.html'"
-          >
+          <button type="button" onclick="window.location.href = 'index.html'">
             Volver al menú
           </button>
 
@@ -141,8 +169,74 @@
       </article>
     </main>
 
-    <footer>
-      <p>Coki Librería</p>
+    <footer class="coki-footer mt-auto pt-4 pt-md-5 pb-3">
+      <div class="container">
+        <div class="row gy-4">
+          <div class="col-12 col-md-4">
+            <img
+              src="img/coki-logo.png"
+              alt="Logo de Coki Librería"
+              width="56"
+              height="56"
+              class="coki-footer__logo mb-2"
+            />
+            <h2 class="coki-footer__titulo">Coki Librería</h2>
+            <p class="coki-footer__texto">
+              Útiles escolares, impresiones y mucho más.
+            </p>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-4">
+            <h3 class="coki-footer__titulo">Contacto</h3>
+            <ul class="coki-footer__lista">
+              <li class="mb-2">
+                <a
+                  href="https://wa.me/5493813429672"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <i class="bi bi-whatsapp me-1" aria-hidden="true"></i> 381
+                  342-9672
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.instagram.com/cokilibreria/"
+                  target="_blank"
+                  rel="noopener"
+                >
+                  <i class="bi bi-instagram me-1" aria-hidden="true"></i>
+                  @cokilibreria
+                </a>
+              </li>
+            </ul>
+          </div>
+
+          <div class="col-12 col-sm-6 col-md-4">
+            <h3 class="coki-footer__titulo">Dónde estamos</h3>
+            <p class="coki-footer__texto">
+              <a
+                href="https://maps.app.goo.gl/WkBYNbqh1zgxrKWv5"
+                target="_blank"
+                rel="noopener"
+              >
+                <i class="bi bi-geo-alt-fill me-1" aria-hidden="true"></i> Ver
+                ubicación en Google Maps
+              </a>
+            </p>
+          </div>
+        </div>
+
+        <hr class="coki-footer__sep my-3" />
+
+        <p class="coki-footer__copy">&copy; 2026 Coki Librería</p>
+      </div>
     </footer>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

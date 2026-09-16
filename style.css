@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap');
+﻿@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@400;600;700;800&display=swap');
 
 /* ============================================================
    COKI LIBRERÍA — style.css   (hoja de estilos única del sitio)
@@ -88,6 +88,8 @@
 html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
+    overflow-y: scroll;
+    scrollbar-gutter: stable;
     /* El fondo también en <html> para que cubra el 100% aunque haya
        barra de scroll o algún desborde de sub-píxeles */
     background-color: var(--color-fondo);
@@ -189,7 +191,7 @@ main > h1 {
 [data-page="impresiones"] main > header.hero h1,
 [data-page="impresiones"] main > header.hero p,
 [data-page="impresiones"] main > section > h2,
-[data-page^="sesion"] main > section > h2,
+/* [data-page^="sesion"] main > section > h2,  <- TP3: el h2 del login cambió de lugar */
 #flowHeader h1,
 #flowHeader p {
     color: var(--color-sobre-fondo);
@@ -250,11 +252,11 @@ button[type="submit"]:hover,
     box-shadow: 2px 3px 0 0 var(--color-secundario);
 }
 
-
 /* ============================================================
    6. FORMULARIOS
    ============================================================ */
-label {
+/* TP3: se excluyen los logins, que ahora usan Bootstrap. */
+body:not([data-page^="sesion"]) label {
     display: block;
     font-weight: 700;
     font-size: 0.9rem;
@@ -263,9 +265,9 @@ label {
     text-align: left;
 }
 
-input,
-select,
-textarea {
+body:not([data-page^="sesion"]) input,
+body:not([data-page^="sesion"]) select,
+body:not([data-page^="sesion"]) textarea {
     font-family: var(--fuente-texto);
     font-size: 1rem;
     width: 100%;
@@ -277,21 +279,21 @@ textarea {
     box-shadow: var(--sombra-dura-sm);
 }
 
-input:focus,
-select:focus,
-textarea:focus {
+body:not([data-page^="sesion"]) input:focus,
+body:not([data-page^="sesion"]) select:focus,
+body:not([data-page^="sesion"]) textarea:focus {
     outline: none;
     transform: translateY(3px);
     box-shadow: 1px 1px 0 0 var(--color-acento);
 }
 
-textarea {
+body:not([data-page^="sesion"]) textarea {
     resize: vertical;
     min-height: 90px;
 }
 
 /* Formularios "tarjeta": centrados, fondo crema, borde y sombra dura */
-main form {
+body:not([data-page^="sesion"]) main form {
     display: flex;
     flex-direction: column;
     gap: var(--esp-md);
@@ -305,11 +307,11 @@ main form {
     box-shadow: var(--sombra-dura);
 }
 
-main form h2 {
+body:not([data-page^="sesion"]) main form h2 {
     font-weight: 700;
 }
 
-main form fieldset {
+body:not([data-page^="sesion"]) main form fieldset {
     border: none;
     padding: 0;
     display: flex;
@@ -317,17 +319,17 @@ main form fieldset {
     gap: var(--esp-md);
 }
 
-main form legend {
+body:not([data-page^="sesion"]) main form legend {
     font-family: var(--fuente-titulos);
     font-weight: 600;
     margin-bottom: var(--esp-sm);
 }
 
-main form .campo {
+body:not([data-page^="sesion"]) main form .campo {
     text-align: left;
 }
 
-main form a {
+body:not([data-page^="sesion"]) main form a {
     font-weight: 800;
     color: var(--color-tinta);
 }
@@ -346,49 +348,49 @@ main form a {
 /* ============================================================
    7. BARRA SUPERIOR + NAVBAR  (FLEXBOX / GRID)
    ============================================================ */
-header {
+/* header {
     background-color: var(--color-superficie-alt);
     border-bottom: var(--borde);
     padding: var(--esp-md);
-}
+} */
 
-header img {
+/* header img {
     max-height: 56px;
     width: auto;
-}
+} */
 
 /* Barra de navegación tipo "píldora" */
-nav {
+/* nav {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: var(--esp-xs);
-}
+} */
 
-nav[aria-label="Secciones principales"] {
+/* nav[aria-label="Secciones principales"] {
     background-color: rgba(47, 42, 86, 0.06);
     border: 2px solid rgba(47, 42, 86, 0.15);
     border-radius: 999px;
     padding: var(--esp-xs);
-}
+} */
 
-nav ul {
+/* nav ul {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
     gap: var(--esp-xs);
-}
+} */
 
-nav a {
+/* nav a {
     position: relative;
     font-weight: 700;
     color: var(--color-tinta);
     padding: 0.45rem 0.9rem;
     border-radius: 999px;
     transition: background-color 0.15s ease;
-}
+} */
 
-nav a::after {
+/* nav a::after {
     content: "";
     position: absolute;
     left: 50%;
@@ -398,50 +400,50 @@ nav a::after {
     background-color: var(--color-primario);
     transform: translateX(-50%);
     transition: width 0.25s ease;
-}
+} */
 
-nav a:hover {
+/* nav a:hover {
     background-color: rgba(255, 255, 255, 0.65);
     text-decoration: none;
-}
+} */
 
-nav a:hover::after {
+/* nav a:hover::after {
     width: 55%;
-}
+} */
 
 /* ---- Barra superior (.barra): inicio, librería y consultar pedido ----
    Celular: apilada y centrada.  Desde 600px pasa a grid de 3 columnas
    ("Menú" a la izquierda, logo al centro, navbar a la derecha). */
-.barra {
+/* .barra {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: var(--esp-sm);
-}
+} */
 
-.barra > a {
+/* .barra > a {
     display: inline-flex;
-}
+} */
 
-.barra .header__logo {
+/* .barra .header__logo {
     max-height: 52px;
-}
+} */
 
-.barra .menu {
+/* .barra .menu {
     margin-bottom: 0;
-}
+} */
 
 /* En las páginas de flujo la barra queda fija arriba */
-[data-page="libreria"] .barra,
+/* [data-page="libreria"] .barra,
 [data-page="consultarpedido"] .barra,
 [data-page="impresiones"] .barra {
     position: sticky;
     top: 0;
     z-index: 20;
-}
+} */
 
 /* Carrito, agregado como un ítem más de la píldora de navegación */
-.nav__cart {
+/* .nav__cart {
     position: relative;
     flex-shrink: 0;
     padding: 0.35rem 0.55rem;
@@ -449,30 +451,30 @@ nav a:hover::after {
     border: none;
     box-shadow: none;
     border-radius: 999px;
-}
+} */
 
-.nav__cart:hover {
+/* .nav__cart:hover {
     background-color: rgba(255, 255, 255, 0.7);
-}
+} */
 
-.nav__cart svg {
+/* .nav__cart svg {
     width: 22px;
     height: 22px;
     color: var(--color-tinta);
-}
+} */
 
 
 /* ============================================================
    8. MENÚ DESPLEGABLE ANIMADO  (<details class="menu">)
    ============================================================ */
-.menu {
+/* .menu {
     position: relative;
     width: 12rem;
     max-width: 100%;
     margin-bottom: var(--esp-sm);
-}
+} */
 
-.menu__toggle {
+/* .menu__toggle {
     list-style: none;
     cursor: pointer;
     display: flex;
@@ -487,23 +489,23 @@ nav a:hover::after {
     border: var(--borde);
     border-radius: var(--radio-md);
     box-shadow: var(--sombra-dura-sm);
-}
+} */
 
-.menu__toggle::-webkit-details-marker {
+/* .menu__toggle::-webkit-details-marker {
     display: none;
-}
+} */
 
 /* Flecha construida con dos pseudo-elementos */
-.menu__arrow {
+/* .menu__arrow {
     height: 0.7rem;
     width: 0.7rem;
     position: relative;
     display: flex;
     justify-content: center;
     transition: transform 0.3s ease;
-}
+} */
 
-.menu__arrow::before,
+/* .menu__arrow::before,
 .menu__arrow::after {
     content: "";
     position: absolute;
@@ -512,22 +514,22 @@ nav a:hover::after {
     background-color: #fff;
     border-radius: 500px;
     transform-origin: bottom;
-}
+} */
 
-.menu__arrow::after {
+/* .menu__arrow::after {
     transform: rotate(35deg) translateX(-0.5px);
-}
+} */
 
-.menu__arrow::before {
+/* .menu__arrow::before {
     transform: rotate(-35deg) translateX(0.5px);
-}
+} */
 
-.menu[open] .menu__arrow {
+/* .menu[open] .menu__arrow {
     transform: rotateX(180deg);
-}
+} */
 
 /* Panel desplegable */
-.menu__panel {
+/* .menu__panel {
     position: absolute;
     left: 0;
     top: calc(100% + 6px);
@@ -541,16 +543,104 @@ nav a:hover::after {
     border-radius: var(--radio-md);
     box-shadow: var(--sombra-dura);
     overflow: hidden;
-}
+} */
 
-.menu__panel ul {
+/* .menu__panel ul {
     flex-direction: column;
     align-items: stretch;
     gap: 0;
+} */
+
+/* .menu__panel a {
+    display: block;
+    padding: 8px 10px;
+    border-radius: 6px;
+    color: inherit;
+    font-weight: 700;
+    border-bottom: 1px solid rgba(47, 42, 86, 0.18);
+} */
+
+/* .menu__panel li:last-child a {
+    border-bottom: none;
+} */
+
+/* .menu__panel a:hover {
+    background-color: var(--color-superficie);
+    text-decoration: none;
+} */
+
+/* .menu__panel a::after {
+    display: none;
+} */
+
+/* Entrada escalonada de los ítems al abrir */
+/* .menu[open] .menu__panel li {
+    animation: menuItem 0.4s both;
+} */
+
+/* .menu[open] .menu__panel li:nth-child(2) { animation-delay: 0.06s; } */
+/* .menu[open] .menu__panel li:nth-child(3) { animation-delay: 0.12s; } */
+/* .menu[open] .menu__panel li:nth-child(4) { animation-delay: 0.18s; } */
+
+/* @keyframes menuItem {
+    from { opacity: 0; transform: translateY(12px); }
+    to   { opacity: 1; transform: translateY(0); }
+} */
+
+
+/* ============================================================
+   7C. NAVBAR (BOOTSTRAP)
+   ============================================================ */
+.coki-navbar {
+    background-color: var(--color-superficie-alt);
+    border-bottom: var(--borde);
+    padding: var(--esp-md);
 }
 
-.menu__panel a {
-    display: block;
+.coki-navbar__inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--esp-sm);
+    padding: 0;
+}
+
+.coki-navbar__logo {
+    max-height: 52px;
+}
+
+.coki-navbar__toggle {
+    display: flex;
+    align-items: center;
+    gap: var(--esp-sm);
+    height: 2.5rem;
+    padding: 3px 15px;
+    font-family: var(--fuente-titulos);
+    font-weight: 700;
+    color: #fff;
+    background-color: var(--color-primario);
+    border: var(--borde);
+    border-radius: var(--radio-md);
+    box-shadow: var(--sombra-dura-sm);
+}
+
+.coki-navbar__toggle:hover,
+.coki-navbar__toggle:focus {
+    color: #fff;
+    background-color: var(--color-primario-oscuro);
+}
+
+.coki-navbar__panel {
+    padding: 6px;
+    background-color: #fff;
+    color: var(--color-tinta);
+    border: var(--borde);
+    border-radius: var(--radio-md);
+    box-shadow: var(--sombra-dura);
+}
+
+.coki-navbar__panel .dropdown-item {
     padding: 8px 10px;
     border-radius: 6px;
     color: inherit;
@@ -558,31 +648,222 @@ nav a:hover::after {
     border-bottom: 1px solid rgba(47, 42, 86, 0.18);
 }
 
-.menu__panel li:last-child a {
+.coki-navbar__panel li:last-child .dropdown-item {
     border-bottom: none;
 }
 
-.menu__panel a:hover {
+.coki-navbar__panel .dropdown-item:hover,
+.coki-navbar__panel .dropdown-item:focus {
+    background-color: var(--color-superficie);
+    color: inherit;
+}
+
+.coki-navbar__links {
+    background-color: rgba(47, 42, 86, 0.06);
+    border: 2px solid rgba(47, 42, 86, 0.15);
+    border-radius: 999px;
+    padding: var(--esp-xs);
+    gap: var(--esp-xs);
+    margin-bottom: 0;
+    align-items: center;
+}
+
+.coki-navbar__links .coki-navbar__link {
+    position: relative;
+    font-weight: 700;
+    color: var(--color-tinta);
+    padding: 0.45rem 0.9rem;
+    border-radius: 999px;
+    transition: background-color 0.15s ease;
+}
+
+.coki-navbar__link:hover,
+.coki-navbar__link:focus {
+    background-color: rgba(255, 255, 255, 0.65);
+    color: var(--color-tinta);
+}
+
+.coki-navbar__cart {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    padding: 0.35rem 0.55rem;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    border-radius: 999px;
+}
+
+.coki-navbar__cart:hover,
+.coki-navbar__cart:focus {
+    background-color: rgba(255, 255, 255, 0.7);
+}
+
+.coki-navbar__cart svg {
+    width: 22px;
+    height: 22px;
+    color: var(--color-tinta);
+}
+
+.coki-navbar__hamburger {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    padding: 0;
+    font-size: 1.4rem;
+    line-height: 1;
+    color: #fff;
+    background-color: var(--color-primario);
+    border: var(--borde);
+    border-radius: var(--radio-md);
+    box-shadow: var(--sombra-dura-sm);
+}
+
+.coki-navbar__hamburger:hover,
+.coki-navbar__hamburger:focus {
+    color: #fff;
+    background-color: var(--color-primario-oscuro);
+}
+
+.coki-offcanvas {
+    width: 16rem;
+    max-width: 85vw;
+    background-color: var(--color-superficie-alt);
+    border-left: var(--borde);
+}
+
+.coki-offcanvas__header {
+    border-bottom: var(--borde);
+    padding: var(--esp-md);
+}
+
+.coki-offcanvas__title {
+    font-family: var(--fuente-titulos);
+    font-weight: 700;
+    color: var(--color-tinta);
+    margin: 0;
+}
+
+.coki-offcanvas__body {
+    padding: var(--esp-md);
+}
+
+.coki-offcanvas__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-xs);
+    margin: 0;
+    padding: 0;
+}
+
+.coki-offcanvas__list a,
+.coki-offcanvas__cart {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: var(--esp-sm);
+    width: 100%;
+    padding: 0.6rem 0.8rem;
+    border-radius: var(--radio-md);
+    font-weight: 700;
+    color: var(--color-tinta);
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+    text-align: left;
+}
+
+.coki-offcanvas__list a:hover,
+.coki-offcanvas__list a:focus,
+.coki-offcanvas__cart:hover,
+.coki-offcanvas__cart:focus {
     background-color: var(--color-superficie);
     text-decoration: none;
+    color: var(--color-tinta);
 }
 
-.menu__panel a::after {
-    display: none;
+.coki-offcanvas__cart:active {
+    transform: none;
+    box-shadow: none;
 }
 
-/* Entrada escalonada de los ítems al abrir */
-.menu[open] .menu__panel li {
-    animation: menuItem 0.4s both;
+.coki-offcanvas__sep {
+    border: none;
+    border-top: 1px solid rgba(47, 42, 86, 0.18);
+    margin: var(--esp-sm) 0;
 }
 
-.menu[open] .menu__panel li:nth-child(2) { animation-delay: 0.06s; }
-.menu[open] .menu__panel li:nth-child(3) { animation-delay: 0.12s; }
-.menu[open] .menu__panel li:nth-child(4) { animation-delay: 0.18s; }
+.coki-offcanvas__cart-icon {
+    position: relative;
+    display: inline-flex;
+}
 
-@keyframes menuItem {
-    from { opacity: 0; transform: translateY(12px); }
-    to   { opacity: 1; transform: translateY(0); }
+.coki-offcanvas__cart-icon svg {
+    width: 20px;
+    height: 20px;
+    color: var(--color-tinta);
+}
+
+.coki-offcanvas__cart-icon span {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    min-width: 1.1rem;
+    height: 1.1rem;
+    padding: 0 0.2rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #fff;
+    background-color: var(--color-primario);
+    border: 2px solid var(--color-superficie-alt);
+    border-radius: 999px;
+}
+
+@media (max-width: 849.98px) {
+    .coki-navbar__inner {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .coki-navbar__menu,
+    .coki-navbar__links {
+        display: none;
+    }
+
+    .coki-navbar__hamburger {
+        display: inline-flex;
+    }
+}
+
+@media (min-width: 850px) {
+    .coki-navbar__inner {
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+        align-items: center;
+        gap: var(--esp-md);
+    }
+
+    .coki-navbar__hamburger {
+        display: none;
+    }
+
+    .coki-navbar__menu {
+        justify-self: start;
+    }
+
+    .coki-navbar__links {
+        justify-self: end;
+    }
 }
 
 
@@ -662,13 +943,13 @@ nav a:hover::after {
     margin-bottom: var(--esp-sm);
 }
 
-[data-page="inicio"] .card {
+/* [data-page="inicio"] .card {
     width: 100%;
     max-width: 360px;
-}
+} */
 
 /* Card (adaptación del diseño de Uiverse a la paleta del sitio) */
-.card {
+/* .card {
     display: flex;
     flex-direction: column;
     background-color: var(--color-superficie);
@@ -677,40 +958,113 @@ nav a:hover::after {
     box-shadow: var(--sombra-dura);
     overflow: hidden;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+} */
 
-.card:hover {
+/* .card:hover {
     transform: scale(1.04);
     box-shadow: 6px 8px 0 1px var(--color-acento);
-}
+} */
 
-.card__media {
+/* .card__media {
     aspect-ratio: 16 / 10;
     background-image: linear-gradient(135deg, #f9d9e5, #ead4f0);
     border-bottom: var(--borde);
-}
+} */
 
-.card__media img {
+/* .card__media img {
     width: 100%;
     height: 100%;
     object-fit: contain;
     padding: var(--esp-sm);
-}
+} */
 
-.card__body {
+/* .card__body {
     display: flex;
     flex-direction: column;
     gap: var(--esp-sm);
     padding: var(--esp-md);
-}
+} */
 
-.card__body h3 {
+/* .card__body h3 {
     font-weight: 700;
-}
+} */
 
-.card__btn {
+/* .card__btn {
     margin-top: var(--esp-xs);
     align-self: flex-start;
+} */
+
+/* --- 11B. Cards de categorías (Bootstrap) --- */
+.coki-category-card {
+    width: 100%;
+    max-width: 360px;
+    background-color: var(--color-superficie);
+    border: var(--borde);
+    border-radius: var(--radio-md);
+    box-shadow: var(--sombra-dura);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.coki-category-card:hover,
+.coki-category-card:focus {
+    transform: scale(1.04);
+    box-shadow: 6px 8px 0 1px var(--color-acento);
+    text-decoration: none;
+    outline: none;
+}
+
+.coki-category-card:focus-visible {
+    outline: 3px solid var(--color-secundario);
+    outline-offset: 2px;
+}
+
+.coki-category-card__media {
+    aspect-ratio: 16 / 10;
+    background-image: linear-gradient(135deg, #f9d9e5, #ead4f0);
+    border-bottom: var(--borde);
+    display: flex;
+}
+
+.coki-category-card__media .card-img-top {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: var(--esp-sm);
+    border-radius: 0;
+}
+
+.coki-category-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-sm);
+}
+
+.coki-category-card__title {
+    font-weight: 700;
+    margin-bottom: 0;
+}
+
+.coki-category-card__btn {
+    margin-top: var(--esp-xs);
+    align-self: flex-start;
+    padding: 0.8rem 1.4rem;
+    font-family: var(--fuente-texto);
+    font-weight: 800;
+    color: #fff;
+    background-color: var(--color-primario);
+    border: var(--borde);
+    border-radius: var(--radio-md);
+    box-shadow: var(--sombra-dura-sm);
+}
+
+.coki-category-card:hover .coki-category-card__btn {
+    background-color: var(--color-primario-oscuro);
+}
+
+.coki-category-card__btn:active {
+    transform: translateY(3px);
+    box-shadow: 1px 1px 0 0 var(--color-acento);
 }
 
 
@@ -813,6 +1167,28 @@ nav a:hover::after {
 /* ============================================================
    15. PÁGINAS DE SESIÓN (usuario / admin)
    ============================================================ */
+
+/* Header del TP2, sin cambios (el font-weight repone lo que pisa Bootstrap). */
+[data-page^="sesion"] header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--esp-xs);
+    text-align: center;
+    padding: var(--esp-lg) var(--esp-md);
+    background: linear-gradient(160deg, var(--color-superficie), var(--color-superficie-alt));
+}
+
+[data-page^="sesion"] header img {
+    max-height: 56px;
+}
+
+[data-page^="sesion"] header h1 {
+    font-weight: 700;
+}
+
+/* TP3: CSS del TP2 comentado, no borrado. Los logins ahora usan Bootstrap. */
+/*
 [data-page^="sesion"] header {
     display: flex;
     flex-direction: column;
@@ -865,11 +1241,14 @@ nav a:hover::after {
     font-weight: 800;
     text-decoration: underline;
 }
+*/ /* ← fin del CSS puro del TP2 (páginas de sesión) */
 
 
 /* ============================================================
    16. FOOTER
    ============================================================ */
+/* TP3: CSS del TP2 comentado, no borrado. El footer ahora usa Bootstrap. */
+/*
 body > footer {
     position: relative;
     z-index: 1;
@@ -886,6 +1265,7 @@ body > footer p {
     font-family: var(--fuente-titulos);
     letter-spacing: 0.02em;
 }
+*/ /* ← fin del CSS puro del TP2 (footer) */
 
 /* ============================================================
    16b. PANEL DE ADMINISTRACIÓN
@@ -961,21 +1341,21 @@ body > footer p {
     }
 
     /* Barra superior en 3 columnas: "Menú" | logo | navbar */
-    .barra {
+/*     .barra {
         display: grid;
         grid-template-columns: 1fr auto 1fr;
         align-items: center;
         gap: var(--esp-md);
-    }
+    } */
 
-    .barra .menu {
+/*     .barra .menu {
         justify-self: start;
         margin-bottom: 0;
-    }
+    } */
 
-    .barra > nav[aria-label="Secciones principales"] {
+/*     .barra > nav[aria-label="Secciones principales"] {
         justify-self: end;
-    }
+    } */
 }
 
 /* ---------- Escritorio: 992px o más ---------- */
@@ -1025,4 +1405,151 @@ body > footer p {
 
 .admin-stat {
     padding: var(--esp-lg);
+}
+
+/* ============================================================
+   18. COMPLEMENTO TP3
+   Bootstrap arma la estructura; estas clases le ponen la paleta de la marca.
+   ============================================================ */
+
+/* --- Tarjeta del login (componente card de Bootstrap) --- */
+.coki-card {
+    border-radius: var(--radio-lg);
+    background-color: var(--color-superficie);
+    border: var(--borde);
+    box-shadow: var(--sombra-dura);
+}
+
+/* Anula el hover de la .card del TP2: en un login no va. */
+.coki-card:hover {
+    transform: none;
+    box-shadow: var(--sombra-dura);
+}
+
+.coki-card .form-control {
+    border: var(--borde);
+    box-shadow: var(--sombra-dura-sm);
+}
+
+.coki-card .form-control:focus {
+    border-color: var(--color-secundario);
+    box-shadow: 1px 1px 0 0 var(--color-acento);
+}
+
+.coki-card .input-group-text {
+    background-color: var(--color-superficie-alt);
+    border: var(--borde);
+    color: var(--color-tinta);
+}
+
+/* --- Botón de marca sobre .btn de Bootstrap --- */
+.coki-btn {
+    background-color: var(--color-primario);
+    color: #fff;
+    font-family: var(--fuente-titulos);
+    font-weight: 600;
+    border: var(--borde);
+    box-shadow: var(--sombra-dura);
+}
+
+.coki-btn:hover,
+.coki-btn:focus {
+    background-color: var(--color-primario-oscuro);
+    color: #fff;
+}
+
+.coki-btn:active {
+    transform: translateY(3px);
+    box-shadow: var(--sombra-dura-sm);
+}
+
+/* --- Footer: Bootstrap arma la grilla, esto pone los colores y la tipografía --- */
+.coki-footer {
+    background-color: var(--color-fondo-oscuro);
+    color: var(--color-superficie);
+    border-top: 3px solid var(--color-acento);
+    text-align: center;
+}
+
+.coki-footer__logo {
+    margin-inline: auto;
+}
+
+.coki-footer__titulo {
+    font-family: var(--fuente-titulos);
+    font-size: 1rem;
+    color: var(--color-acento);
+    letter-spacing: 0.02em;
+    margin-bottom: var(--esp-sm);
+}
+
+.coki-footer__texto,
+.coki-footer__lista,
+.coki-footer__copy {
+    font-size: 0.9rem;
+    color: var(--color-superficie);
+    margin-bottom: 0;
+}
+
+.coki-footer__lista {
+    list-style: none;
+    padding-left: 0;
+}
+
+.coki-footer__sep {
+    border: 0;
+    border-top: 1px solid rgba(243, 233, 231, 0.25);
+}
+
+.coki-footer a {
+    color: var(--color-superficie);
+    text-decoration: none;
+}
+
+.coki-footer a:hover,
+.coki-footer a:focus-visible {
+    color: var(--color-acento);
+    text-decoration: underline;
+}
+
+.coki-footer .bi {
+    color: var(--color-acento);
+}
+
+/* Desde 768px (breakpoint md) las columnas van a la izquierda. */
+@media (min-width: 768px) {
+
+    .coki-footer {
+        text-align: left;
+    }
+
+    .coki-footer__logo {
+        margin-inline: 0;
+    }
+
+    .coki-footer__copy {
+        text-align: center;
+    }
+}
+
+/* --- Títulos y enlaces claros sobre el fondo violeta --- */
+.coki-titulo-claro {
+    color: var(--color-sobre-fondo);
+    font-weight: 700;
+}
+
+.coki-texto-claro {
+    color: var(--color-sobre-fondo);
+}
+
+/* Sin hover: en el TP2 estos enlaces no reaccionaban. */
+.coki-texto-claro a {
+    color: #fff;
+    font-weight: 800;
+    text-decoration: underline;
+}
+
+.coki-card legend {
+    font-family: var(--fuente-titulos);
+    color: var(--color-tinta);
 }
