@@ -20,7 +20,14 @@
                 </button>
                 <ul class="dropdown-menu coki-navbar__panel">
                     <li><a class="dropdown-item" href="index.html">Volver al inicio</a></li>
-                    <li><a class="dropdown-item" href="SesionAdmin.html" id="adminSessionButton" data-menu-action="logout">Cerrar sesión</a></li>
+                    <li>
+                        <a class="dropdown-item"
+                          href="Sesion.html"
+                          id="adminSessionButton"
+                          data-menu-action="logout">
+                            Cerrar sesión
+                        </a>
+                    </li>
                 </ul>
             </div>
 
@@ -47,7 +54,11 @@
         <div class="offcanvas-body coki-offcanvas__body">
             <ul class="coki-offcanvas__list">
                 <li><a href="index.html">Volver al inicio</a></li>
-                <li><a href="SesionAdmin.html" data-menu-action="logout">Cerrar sesión</a></li>
+                <li>
+                      <a href="Sesion.html" data-menu-action="logout">
+                          Cerrar sesión
+                      </a>
+                </li>
             </ul>
         </div>
     </div>
@@ -128,7 +139,31 @@
 
     </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+
+    const botonesLogout = document.querySelectorAll(
+        '[data-menu-action="logout"]'
+    );
+
+    botonesLogout.forEach(function (boton) {
+
+        boton.addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            localStorage.removeItem("tipoUsuario");
+
+            window.location.href = "Sesion.html";
+        });
+
+    });
+
+});
+</script>
+
 
 </body>
 </html>
