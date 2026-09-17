@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Inicio de sesión de Coki Librería.">
+    <title>Inicio de sesión | Coki Librería</title>
+
+    <link rel="icon" href="img/coki-logo.png">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body data-page="sesion">
+
+    <header>
+
+        <img src="img/coki-logo.png" alt="Logo de Coki Librería">
+
+        <h1>Inicio de sesión</h1>
+
+        <p id="descripcion-sesion">
+            Ingresá a tu cuenta de Coki Librería
+        </p>
+
+    </header>
+
+    <main class="container py-3 py-md-4">
+
+        <div class="row justify-content-center">
+
+            <div class="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
+
+                <h2 id="titulo-sesion"
+                    class="h3 text-center coki-titulo-claro mb-2">
+                    Acceso de usuario
+                </h2>
+
+                <section class="card coki-card">
+
+                    <div class="card-body p-4">
+
+                        <form id="form-sesion">
+
+                            <fieldset>
+
+                                <legend class="fs-6 fw-bold text-center mb-3">
+                                    Datos de acceso
+                                </legend>
+
+                                <div class="mb-3">
+
+                                    <label for="tipoUsuario" class="form-label">
+                                        Tipo de cuenta:
+                                    </label>
+
+                                    <select class="form-select"
+                                        id="tipoUsuario"
+                                        name="tipoUsuario">
+
+                                        <option value="cliente" selected>
+                                            Cliente
+                                        </option>
+
+                                        <option value="admin">
+                                            Administrador
+                                        </option>
+
+                                    </select>
+
+                                </div>
+
+                                <div class="mb-3">
+
+                                    <label for="identificador"
+                                        class="form-label"
+                                        id="label-identificador">
+                                        Correo electrónico:
+                                    </label>
+
+                                    <input type="email"
+                                        class="form-control"
+                                        id="identificador"
+                                        name="identificador"
+                                        autocomplete="email"
+                                        placeholder="Ingresá tu correo electrónico"
+                                        required>
+
+                                </div>
+
+                                <div class="mb-3">
+
+                                    <label for="password"
+                                        class="form-label">
+                                        Contraseña:
+                                    </label>
+
+                                    <input type="password"
+                                        class="form-control"
+                                        id="password"
+                                        name="password"
+                                        autocomplete="current-password"
+                                        required>
+
+                                </div>
+
+                                <div class="d-grid">
+
+                                    <button type="submit"
+                                        class="btn coki-btn rounded-3 py-2">
+                                        iniciar sesión
+                                    </button>
+
+                                </div>
+
+                            </fieldset>
+
+                        </form>
+
+                    </div>
+
+                </section>
+
+                <p id="registro"
+                    class="text-center coki-texto-claro mt-3 mb-2">
+
+                    ¿No tenés una cuenta?
+                    <a href="#">Registrate</a>
+
+                </p>
+
+                <p id="recuperar"
+                    class="text-center coki-texto-claro mb-2">
+
+                    <a href="#">¿Olvidaste tu contraseña?</a>
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl-ntUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous">
+    </script>
+
+    <script src="js/sesion.js"></script>
+
+</body>
+
+</html>
+
