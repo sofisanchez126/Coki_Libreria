@@ -1102,18 +1102,199 @@ body:not([data-page^="sesion"]) textarea {
     margin-bottom: var(--esp-lg);
 }
 
-/* --- CSS GRID: listado de productos (generado por JS) --- */
-#productList {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-    gap: var(--esp-md);
+/* --- Contador de resultados ("Mostrando 1-6 de 24 productos") --- */
+.coki-product-count {
+    font-weight: 700;
+    color: var(--color-texto-suave);
+    margin-bottom: var(--esp-sm);
 }
 
-#productList > * {
-    padding: var(--esp-md);
+/* --- CSS GRID: listado de productos (generado por JS) ---
+   Columnas fijas (no auto-fill): con 6 productos por página, auto-fill
+   podría dejar 5 arriba y 1 huérfana abajo. */
+#productList {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--esp-md);
+    align-items: stretch;
+}
+
+/* Mensaje de "no hay resultados": ocupa todo el ancho de la grilla. */
+.coki-product-empty {
+    grid-column: 1 / -1;
+    padding: var(--esp-lg);
+    text-align: center;
+    color: var(--color-texto-suave);
+    background-color: var(--color-superficie-alt);
     border: var(--borde);
     border-radius: var(--radio-md);
+    margin-bottom: 0;
+}
+
+/* --- 12B. Tarjeta de producto (card de Bootstrap + paleta de la marca) --- */
+.coki-product-card {
+    height: 100%;
     background-color: var(--color-superficie-alt);
+    border: var(--borde);
+    border-radius: var(--radio-md);
+    box-shadow: var(--sombra-dura-sm);
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.coki-product-card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--sombra-dura);
+}
+
+/* Imagen en 3:2 para que todas las tarjetas queden parejas y cuadradas. */
+.coki-product-card__media {
+    aspect-ratio: 3 / 2;
+    background-color: #fff;
+    border-bottom: var(--borde);
+    display: flex;
+}
+
+.coki-product-card__img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: var(--esp-sm);
+    border-radius: 0;
+}
+
+.coki-product-card__body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--esp-xs);
+    padding: var(--esp-md);
+}
+
+/* Pisa el margen propio de .card-subtitle de Bootstrap. */
+.coki-product-card__category {
+    margin-bottom: 0;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-secundario);
+}
+
+/* Pisa el margen propio de .card-title de Bootstrap.
+   El recorte a 2 líneas iguala la altura de todas las tarjetas de la fila. */
+.coki-product-card__title {
+    margin-bottom: 0;
+    font-family: var(--fuente-titulos);
+    font-size: 1rem;
+    line-height: 1.25;
+    color: var(--color-tinta);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.coki-product-card__text {
+    margin-bottom: 0;
+    font-size: 0.85rem;
+    line-height: 1.35;
+    color: var(--color-texto-suave);
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Precio y botón en la misma fila, pegados al pie de la tarjeta. */
+.coki-product-card__footer {
+    margin-top: auto;
+    padding-top: var(--esp-sm);
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--esp-sm);
+}
+
+.coki-product-card__price {
+    font-family: var(--fuente-titulos);
+    font-weight: 700;
+    color: var(--color-primario-oscuro);
+}
+
+/* Pisa el celeste de .btn-primary de Bootstrap. */
+.coki-product-card__btn {
+    flex: 1;
+    min-width: 6rem;
+    font-family: var(--fuente-texto);
+    font-weight: 800;
+    color: #fff;
+    background-color: var(--color-primario);
+    border: var(--borde);
+    border-radius: var(--radio-md);
+    box-shadow: var(--sombra-dura-sm);
+}
+
+.coki-product-card__btn:hover,
+.coki-product-card__btn:focus {
+    color: #fff;
+    background-color: var(--color-primario-oscuro);
+    border-color: var(--color-borde);
+}
+
+.coki-product-card__btn:active {
+    transform: translateY(3px);
+    box-shadow: 1px 1px 0 0 var(--color-acento);
+}
+
+/* --- 12C. Paginación (pagination de Bootstrap + paleta de la marca) --- */
+.coki-pagination {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--esp-xs);
+    margin-top: var(--esp-lg);
+    margin-bottom: 0;
+}
+
+/* Pisa el celeste de .page-link de Bootstrap. */
+.coki-pagination .page-link {
+    font-weight: 800;
+    color: var(--color-tinta);
+    background-color: var(--color-superficie-alt);
+    border: var(--borde);
+    border-radius: var(--radio-sm);
+    box-shadow: none;
+    padding: 0.4rem 0.8rem;
+}
+
+.coki-pagination .page-link:hover {
+    background-color: #fff;
+    color: var(--color-tinta);
+}
+
+/* Página actual destacada. */
+.coki-pagination .page-item.active .page-link {
+    color: #fff;
+    background-color: var(--color-primario);
+    box-shadow: var(--sombra-dura-sm);
+}
+
+/* Flechas apagadas en los extremos. */
+.coki-pagination .page-item.disabled .page-link {
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+
+/* --- 12D. Aviso flotante (toast de Bootstrap) ---
+   Bootstrap le pone 350px fijos, que se desbordan en celulares. */
+.coki-toast {
+    width: auto;
+    max-width: 100%;
+    font-weight: 700;
+    color: var(--color-tinta);
+    background-color: var(--color-superficie-alt);
+    border: var(--borde);
+    border-radius: var(--radio-md);
+    box-shadow: var(--sombra-dura);
 }
 
 
@@ -1333,6 +1514,11 @@ body > footer p {
         grid-template-columns: repeat(2, 1fr);
     }
 
+    /* Productos de librería: 3 por fila */
+    #productList {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
     /* Formulario de impresiones en 2 columnas */
     /* [data-page="impresiones"] form {
         display: grid;
@@ -1390,8 +1576,10 @@ body > footer p {
         flex-wrap: nowrap;
     }
 
+    /* Productos de librería: las mismas 3 columnas, con más separación */
     #productList {
-        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        grid-template-columns: repeat(3, 1fr);
+        gap: var(--esp-lg);
     }
 }
 
