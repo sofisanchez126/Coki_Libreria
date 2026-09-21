@@ -31,7 +31,7 @@
             </button>
             <ul class="dropdown-menu coki-navbar__panel">
               <li><a class="dropdown-item" href="index.html">Volver al inicio</a></li>
-              <li><a class="dropdown-item" href="SesionUsuario.html" id="clientSessionButton" data-menu-action="login">Iniciar sesión</a></li>
+              <li> <a class="dropdown-item" href="Sesion.html" id="clientSessionButton" data-menu-action="login"> Cerrar sesión </a> </li>
             </ul>
           </div>
 
@@ -82,7 +82,7 @@
 
           <ul class="coki-offcanvas__list">
             <li><a href="index.html">Volver al inicio</a></li>
-            <li><a href="SesionUsuario.html" data-menu-action="login">Iniciar sesión</a></li>
+            <li> <a href="Sesion.html" data-menu-action="login"> Cerrar sesión </a> </li>
             <li>
               <button type="button" class="coki-offcanvas__cart">
                 <span class="coki-offcanvas__cart-icon">
@@ -124,7 +124,7 @@
             <input id="clientLoginPhone" required autocomplete="tel" />
           </section>
 
-          <button type="submit">Iniciar sesión</button>
+          <button type="submit">Cerrar sesión</button>
 
           <button type="button" id="createClientAccount">Crear cuenta</button>
 
@@ -162,11 +162,31 @@
               />
             </div>
 
+            <!-- Contador de resultados: lo completa js/libreria.js -->
+            <p id="productCount" class="coki-product-count"></p>
+
+            <!-- Grilla de productos: la completa js/libreria.js -->
             <div id="productList"></div>
+
+            <!-- Paginación: la completa js/libreria.js -->
+            <nav id="productPagination" aria-label="Paginación de productos"></nav>
           </section>
         </section>
       </article>
     </main>
+
+    <!-- Aviso flotante de "producto agregado" (toast de Bootstrap) -->
+    <div class="toast-container position-fixed bottom-0 end-0 p-3">
+      <div
+        id="cartToast"
+        class="toast coki-toast"
+        role="status"
+        aria-live="polite"
+        aria-atomic="true"
+      >
+        <div class="toast-body" id="cartToastText"></div>
+      </div>
+    </div>
 
     <footer class="coki-footer mt-auto pt-4 pt-md-5 pb-3">
       <div class="container">
@@ -237,5 +257,7 @@
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
       crossorigin="anonymous"
     ></script>
+    <script src="js/sesionMenu.js"></script>
+    <script src="js/libreria.js"></script>
   </body>
 </html>
