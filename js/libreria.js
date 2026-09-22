@@ -270,6 +270,45 @@ function mostrarAviso(nombreProducto) {
     toast.show();
 }
 
+function mostrarAvisoInicioSesion() {
+    let aviso = document.getElementById('loginRequiredNotice');
+
+    if (!aviso) {
+        aviso = document.createElement('div');
+        aviso.id = 'loginRequiredNotice';
+        aviso.className = 'coki-login-notice';
+        aviso.setAttribute('aria-hidden', 'true');
+        aviso.innerHTML = `
+            <div class="coki-login-notice__backdrop" data-login-notice-close></div>
+            <div class="coki-login-notice__content" role="alertdialog" aria-modal="true" aria-labelledby="loginNoticeTitle">
+                <div class="coki-login-notice__icon" aria-hidden="true">!</div>
+                <h2 id="loginNoticeTitle">Iniciá sesión para continuar</h2>
+                <p>Necesitás iniciar sesión antes de agregar productos al carrito.</p>
+                <div class="coki-login-notice__actions">
+                    <button type="button" class="coki-login-notice__cancel" data-login-notice-close>Ahora no</button>
+                    <a class="coki-login-notice__accept" href="Sesion.html">Iniciar sesión</a>
+                </div>
+            </div>
+        `;
+        document.body.append(aviso);
+
+        aviso.addEventListener('click', function (evento) {
+            if (evento.target.closest('[data-login-notice-close]')) {
+                cerrarAvisoInicioSesion(aviso);
+            }
+        });
+    }
+
+    aviso.classList.add('is-open');
+    aviso.setAttribute('aria-hidden', 'false');
+    aviso.querySelector('.coki-login-notice__accept').focus();
+}
+
+function cerrarAvisoInicioSesion(aviso) {
+    aviso.classList.remove('is-open');
+    aviso.setAttribute('aria-hidden', 'true');
+}
+
 /* Agrega un producto: si ya estaba, le suma 1 a la cantidad. */
 function agregarAlCarrito(idProducto) {
     const producto = productos.find(function (item) {
@@ -325,7 +364,20 @@ grillaProductos.addEventListener('click', function (evento) {
         return;
     }
 
+    if (!localStorage.getItem('tipoUsuario')) {
+        mostrarAvisoInicioSesion();
+        return;
+    }
+
     agregarAlCarrito(Number(boton.dataset.productoId));
+});
+
+document.addEventListener('keydown', function (evento) {
+    const aviso = document.getElementById('loginRequiredNotice');
+
+    if (evento.key === 'Escape' && aviso && aviso.classList.contains('is-open')) {
+        cerrarAvisoInicioSesion(aviso);
+    }
 });
 
 /* Delegación de eventos: un solo listener para toda la paginación. */
